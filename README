@@ -168,3 +168,8 @@ in the Medline entry. Thanks to Olav Kongas <kongas@ioc.ee>.
 ==================== Revision 1.03:  02 Aug 2000
 Added medref script and code to convert page numbers to long form, both
 thanks to Olav Kongas <kongas@ioc.ee>.
+
+==================== Revision 1.04:  24 Oct 2003
+Added support for new pubmed format where entries start with a PMID
+field rather than a UI field like they used to. Contributed by 
+Jérémy JUST <just@inapg.inra.fr>.

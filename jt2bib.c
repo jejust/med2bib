@@ -1,6 +1,5 @@
-/* Copyright (C) 1997 by Laurent Itti - All rights reserved */
-/* med2bib.c: converts Medline "DISPLAY MEDLINE" records to bibtex
-   format */
+/* Copyright (C) 1997-2000 by Laurent Itti - All rights reserved */
+/* jt2bib.c: converts ISI JTracker records to bibtex format */
 
 #include <stdio.h>
 #include <ctype.h>
@@ -23,18 +22,15 @@ typedef struct {
 } BibEntry;
 
 #define K_AU ('A'*256+'U')
-#define K_TI ('T'*256+'I')
-#define K_VI ('V'*256+'I')
-#define K_IP ('I'*256+'P')
-#define K_PG ('P'*256+'G')
-#define K_TA ('T'*256+'A')
-#define K_MH ('M'*256+'H')
-#define K_AB ('A'*256+'B')
-#define K_DP ('D'*256+'P')
-#define K_AD ('A'*256+'D')
-#define K_CM ('C'*256+'M')
-#define K_LA ('L'*256+'A')
-#define K_SO ('S'*256+'O')
+#define K_TI ('T'*256+'1')
+#define K_VI ('V'*256+'L')
+#define K_IP ('I'*256+'S')
+#define K_SP ('S'*256+'P')
+#define K_EP ('E'*256+'P')
+#define K_TA ('J'*256+'F')
+#define K_AB ('N'*256+'2')
+#define K_DP ('Y'*256+'1')
+#define K_U1 ('U'*256+'1')
 
 #define LINELEN 78
 static char line[1024], lin[1024];
@@ -56,27 +52,6 @@ void clean_entry(BibEntry *e)
   e->comment[0] = '\0';
 }
 
-/* correct_pages: reformat pages to long format (i.e., 1234-1256 instead of
-   Medline's native 1234-56). Contributed by Olav Kongas
-   <ok@mito.physiol.med.vu.nl>  <kongas@ioc.ee>
-   5/14/02: bugfix by Stephan Imfeld <imfeld@geo.unizh.ch> for cases when
-   article only has one page.  */
-void correct_pages(BibEntry *e)
-{
-  int i;
-  char firstpg[14], lastpg[14], *minus;
-  for (i = 0; i < 14 ; i++) firstpg[i] = lastpg[i] = '\0';
-  minus = strchr(e->pages, '-');
-  if (minus != NULL)
-  {
-      strncpy(firstpg, e->pages, (int)(minus - e->pages));
-      strcpy(lastpg, minus + 1);
-      for (i = 0; i < ((int)strlen(firstpg) - (int)strlen(lastpg)); i++)
-          minus[i + 1] = firstpg[i];
-      strcpy(minus + i+1, lastpg) ;
-  }
-}
-
 /* ###################################################################### */
 void print_entry(BibEntry *e, FILE *out)
 {
@@ -86,8 +61,9 @@ void print_entry(BibEntry *e, FILE *out)
   if (e->author[0] == '\0')
     { fprintf(stderr, "Bogus empty entry! ... skipping ...\n"); return; }
 
-  /* clean up page numbers: */
-  correct_pages(e);
+  /* only print out entries of type "Article" */
+  if (strcmp(e->comment, "Article")) return;
+  e->comment[0] = '\0';   /* remove fake comment */
 
   /* generate key: */
   i = 0; nbauth = 0; key[0] = '\0';
@@ -132,12 +108,12 @@ void print_entry(BibEntry *e, FILE *out)
   fprintf(out, "month   ={%s},\n", e->month);
   fprintf(out, "year    ={%s},\n", e->year);
   fprintf(out, "abstract={%s},\n", e->abstract);
-  fprintf(out, "keywords={%s},\n", e->keywords);
+  fprintf(out, "keyword ={%s},\n", e->keywords);
   fprintf(out, "address ={%s},\n", e->address);  
   fprintf(out, "note    ={%s}\n", e->comment);  
   fprintf(out, "}\n\n");
 
-  fprintf(stderr, "med2bib: %s, %s %s;%s(%s):%s\n",
+  fprintf(stderr, "jt2bib: %s, %s %s;%s(%s):%s\n",
 	  key, e->journal, e->year, e->volume, e->issue, e->pages);
 }
 
@@ -182,11 +158,9 @@ void cleanup(char *src, char *dest)
       {
       case '\n':
 	break;
-      case '\"':  /* " emacs bug! */
-	dest[j++] = '\'';
-	break;
       case '>':
       case '<':
+      case '\"':  /* " emacs bug! */
       case '#':
       case '$':
       case '^':
@@ -206,13 +180,41 @@ void cleanup(char *src, char *dest)
   dest[j] = '\0';
 }
 
+void clean_caps(char *str)
+{
+  int i, j, new_word, wlen;
+  i = 0; new_word = 1; wlen = 1000; /* start of a new word */
+  while (str[i] != '\0')
+    {
+      if (new_word == 0)
+	{
+	  if (wlen < 1000)
+	    str[i] = (char)( tolower((int)(str[i])) );
+	}
+      else
+	{
+	  new_word = 0; wlen = 0; j = i;
+	  while(str[j] != ' ' && str[j] != '-' && str[j] != '\0')
+	    {
+	      if (!isalpha(str[j]) && str[j] != ',')
+		{ wlen = 1000; break; } /* ->uppercase */
+	      j++; wlen++;
+	    }
+	  if (wlen <= 3 && (wlen > 1 || (str[i] == 'A' && str[i+1] == ' ')))
+	    str[i] = (char)( tolower((int)(str[i])) );
+	}
+      if (str[i] == ' ' || str[i] == '-') new_word = 1;
+      i ++;
+    }
+  str[0] = (char)(toupper((int)(str[0])));
+}
+
 /* ###################################################################### */
 int main(int argc, char **argv)
 {
   FILE *in, *out;
   BibEntry e;
-  char ontheway = 0, tmp[20], prevblank = 0, first_ever = 1, c,
-    detailed_info = 0;
+  char ontheway = 0, tmp[20], prevblank = 0, first_ever = 1, c;
   int key, i, j, i0, len;
   
   clean_entry(&e);
@@ -243,94 +245,58 @@ int main(int argc, char **argv)
     {
       cleanup(lin, line);
       if (isdigit(line[0]) ||
-         ((prevblank != 0 || first_ever != 0)      /* new entry */
-          && ((line[0] == 'U' && line[1] == 'I')
-              || (line[0] == 'P' && line[1] == 'M'
-                  && line[2] == 'I' && line[3] == 'D'))
-          ))
+	  ((prevblank != 0 || first_ever != 0) 
+	   && line[0] == 'T' && line[1] == 'Y')) /* new entry */
 	{
 	  if (ontheway) print_entry(&e, out);
-	  clean_entry(&e); detailed_info = 0; ontheway = 1;
-	  printf("line=%s\n",line);
+	  clean_entry(&e); ontheway = 1;
 	}
       else if (ontheway && line[0] != '\n' && line[0] != '\0')
 	{
+	  if (line[0] == '=')
+	    { print_entry(&e, out); fclose(in); fclose(out); exit(0); }
 	  if (line[0] != ' ') key = ((int)(line[0]))*256+((int)(line[1]));
 	  switch(key)
 	    {
 	    case K_AU:   /* authors->need to put initials first */
 	      if (strlen(e.author) > 0) concat(e.author, "and");
-	      i = strlen(line) - 1; while(line[i] != ' ') i--;
-	      j = 0; i0 = i; i++; while(line[i] != '\0' && line[i] != '\n')
-		{ tmp[j++] = line[i++]; tmp[j++] = '.'; tmp[j++] = ' '; }
-	      tmp[j] = '\0'; concat(e.author, tmp); line[i0] = '\0';
-	      concat(e.author, &(line[6]));
+	      i = strlen(line) - 1; 
+	      if (i > 5) {   /* sometimes that field is empty!! */
+		while(line[i] != ',') i--;
+		j = 0; i0 = i; i++; while(line[i] != '\0' && line[i] != '\n')
+		  { tmp[j++] = line[i]; if (line[i++] == '.') tmp[j++] = ' '; }
+		tmp[j] = '\0'; concat(e.author, tmp); line[i0] = '\0';
+		concat(e.author, &(line[6]));
+	      }
 	      break;
 	    case K_TI:
 	      concat(e.title, &(line[6]));
 	      break;
+	    case K_U1:
+	      concat(e.comment, &(line[6]));
+	      break;
 	    case K_VI:
-	      concat(e.volume, &(line[6])); detailed_info = 1;
+	      concat(e.volume, &(line[6]));
 	      break;
 	    case K_IP:
-	      concat(e.issue, &(line[6])); detailed_info = 1;
+	      concat(e.issue, &(line[6]));
 	      break;
-	    case K_PG:
-	      concat(e.pages, &(line[6])); detailed_info = 1;
+	    case K_SP:
+	      strcpy(e.pages, &(line[6])); strcat(e.pages, "-");
+	      break;
+	    case K_EP:
+	      strcat(e.pages, &(line[6]));
 	      break;
 	    case K_TA:
-	      concat(e.journal, &(line[6])); detailed_info = 1;
-	      break;
-	    case K_MH:
-	      if (strlen(e.keywords) > 0) concat(e.keywords, "|");
-	      concat(e.keywords, &(line[6]));
+	      clean_caps(&(line[6]));  /* convert journal to clean caps */
+	      concat(e.journal, &(line[6]));
 	      break;
 	    case K_AB:
 	      concat(e.abstract, &(line[6]));
 	      break;
 	    case K_DP:
-	      strncpy(e.year, &(line[6]), 4); detailed_info = 1;
-	      if (strlen(line) > 10)
-		{ strncpy(e.month, &(line[11]), 3); e.month[3] = '\0'; }
-	      break;
-	    case K_AD:
-	      concat(e.address, &(line[6]));
-	      break;
-	    case K_CM:
-	      concat(e.comment, &(line[6]));
-	      break;
-	    case K_LA:
-	      if (line[6] != 'e' || line[7] != 'n' || line[8] != 'g')
-		{
-		  /* not english -> add language to the comment */
-		  concat(e.comment, "("); strcat(e.comment, &(line[6]));
-		  strcat(e.comment, ")");
-		}
-	      break;
-	    case K_SO:  /* abbreviated journal name, vol, issue, etc. */
-	      if (detailed_info == 0)  /* use only if don't have details */
-		{
-		  len = strlen(line);
-		  /* look for 4 digits: year */
-		  for (i = 6; i < len-4; i ++)
-		    if (isdigit(line[i]) && isdigit(line[i+1]) &&
-			isdigit(line[i+2]) && isdigit(line[i+3])) break;
-		  if (i == len - 4)  /* multiline journal name */
-		    { concat(e.journal, &(line[6])); break; }
-		  line[i-1] = '\0'; line[i+4] = '\0';
-		  concat(e.journal, &(line[6]));
-		  strncpy(e.year, &(line[i]), 4);
-		  i += 5; j = i;
-		  while(line[j] != ';' && j < len) j ++;
-		  line[j] = '\0'; strcpy(e.month, &(line[i])); j ++; i = j;
-		  while(line[j] != '(' && line[j] != ':' && j < len) j ++;
-		  c = line[j]; line[j] = '\0'; j ++;
-		  strcpy(e.volume, &(line[i]));
-		  if (c == '(')  /* have an issue number */
-		    { i = j; while(line[i] != ')') i ++; line[i] = '\0';
-		    strcpy(e.issue, &(line[j])); j = i+2; }
-		  strcpy(e.pages, &(line[j]));
-		}
+	      i=6; while(line[i] != '/') i++; line[i] = '\0';
+	      strcpy(e.year, &(line[6]));
 	      break;
 	    default: break;
 	    }

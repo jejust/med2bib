@@ -6,8 +6,8 @@
 #        BibTeX and append them to the BibTeX file biblio.bib
 # EXAMPLE: medref Wilson 1999 >> test.bib
 
-dispmax=10   # Max num of refs. Modify this if necessary
+dispmax=20   # Max num of refs. Modify this if necessary
 string=
 for arg ; do string=$string+AND+$arg ; done
 string=${string#*+AND+}
-lynx -dump "http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Search&db=PubMed&term="$string"&doptcmdl=MEDLINE&dispmax="$dispmax"&title=no" -width=1000 | med2bib
+lynx -dump "http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Search&db=PubMed&term=$string&doptcmdl=MEDLINE&dispmax=$dispmax&title=no" -width=1000 | med2bib
