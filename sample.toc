@@ -1,0 +1,841 @@
+From toc@tocdoc.caltech.edu Thu Mar 12 18:15:44 1998
+Return-Path: <toc@tocdoc.caltech.edu>
+Delivered-To: itti@klab.caltech.edu
+Received: (qmail 7325 invoked from network); 13 Mar 1998 02:15:42 -0000
+Received: from mithrandir.library.caltech.edu (HELO tocdoc.caltech.edu) (131.215.225.1)
+  by ns.klab.caltech.edu with SMTP; 13 Mar 1998 02:15:42 -0000
+Received: by tocdoc.caltech.edu (5.65v3.2/1.1.10.5/19Dec97-0242PM)
+	id AA27606; Thu, 12 Mar 1998 18:21:10 -0800
+Date: Thu, 12 Mar 1998 18:21:10 -0800
+From: TOC/DOC Program Access <toc@tocdoc.caltech.edu>
+Message-Id: <9803130221.AA27606@tocdoc.caltech.edu>
+To: itti@klab.caltech.edu
+Subject:  TOC/DOC data -- Full Citation, tagged ASCII Format 
+Status: O
+
+TI NEURAL CORRELATES OF EPISODIC MEMORY - THE EFFECTS OF DIVIDED ATTENTION
+AU Mangels-JA
+AU Picton-TW
+AU Craik-FIM
+CS Baycrest Ctr Geriatr Care,Rotman Res Inst/N York/On/CANADA/
+JN BRAIN AND COGNITION
+VO 35
+NO 3
+PG 395-399
+PY 1997
+AB Divided attention (DA) in young subjects has been used as a model for the
+   memory deficits associated with aging. Following this model, we assessed the
+   effects of DA at encoding on the electrophysiological activity (ERPs) of
+   young subjects. Individuals studied visually presented words under focused
+   attention or while performing an auditory-motor task. Early positive (P120)
+   and negative (N180) parietooccipital deflections were invariant across
+   encoding conditions.  These peaks may reflect perceptual processes
+   automatically initiated by words within the focus of visual attention.
+   However, DA markedly attenuated two later positive components, the P280 and
+   P580, maximally recorded over right parietal regions. These components may
+   index conscious evaluation of word meaning (P280) and integration of the
+   word with the encoding context (P580), suggesting that reduced attentional
+   resources disrupt episodic encoding at both a conceptual and contextual
+   level.
+RE 9
+DT Article
+LO BIOL
+UD 19980218
+
+TI TOWARD A MODEL OF EYE-MOVEMENT CONTROL IN READING
+AU Reichle-ED
+AU Pollatsek-A
+AU Fisher-DL
+AU Rayner-K
+CS Univ Massachusetts,Dept Psychol,Tobin Hall/Amherst//MA/01003
+CS Univ Massachusetts,Dept Psychol/Amherst//MA/01003
+JN PSYCHOLOGICAL REVIEW
+VO 105
+NO 1
+PG 125-157
+PY 1998
+AB The authors present several versions of a general model, titled the E-Z
+   Reader model, of eye movement control in reading. The major goal of the
+   modeling is to relate cognitive processing (specifically aspects of lexical
+   access) to eye movements in reading. The earliest and simplest versions of
+   the model (E-Z Readers 1 and 2) merely attempt to explain the total time
+   spent on a word before moving forward (the gaze duration) and the
+   probability of fixating a word; later versions (E-Z Renders 3-5) also
+   attempt to explain the durations of individual fixations on individual words
+   and the number of fixations on individual words. The final version (E-Z
+   Render 5) appears to be psychologically plausible and gives a good account
+   of many phenomena in reading. It is also a good tool for analyzing eye
+   movement data in reading. Limitations of the model and directions for future
+   research are also discussed.
+RE 102
+DT Review
+LO HUMS
+UD 19980204
+KW LEXICALLY AMBIGUOUS WORDS
+KW VISUAL-ATTENTION
+KW PERCEPTUAL SPAN
+KW FIXATION TIMES
+KW PRIOR ENCOUNTER
+KW INFORMATION
+KW RECOGNITION
+KW FREQUENCY
+KW MEMORY
+KW COMPREHENSION
+
+TI A NEURAL MODEL OF MULTIMODAL ADAPTIVE SACCADIC EYE-MOVEMENT CONTROL BY
+   SUPERIOR COLLICULUS
+AU Grossberg-S
+AU Roberts-K
+AU Aguilar-M
+AU Bullock-D
+CS Boston Univ,Dept Cognit & Neural Syst,677 Beacon St/Boston//MA/02215
+CS Boston Univ,Ctr Adapt Syst/Boston//MA/02215
+JN JOURNAL OF NEUROSCIENCE
+VO 17
+NO 24
+PG 9706-9725
+PY 1997
+AB How does the saccadic movement system select a target when visual, auditory,
+   and planned movement commands differ? How do retinal, head-centered, and
+   motor error coordinates interact during the selection process? Recent data
+   on superior colliculus (SC) reveal a spreading wave of activation across
+   buildup cells the peak activity of which covaries with the current gaze
+   error. In contrast, the locus of peak activity remains constant at burst
+   cells, whereas their activity level decays with residual gaze error. A
+   neural model answers these questions and simulates burst and buildup
+   responses in visual, overlap, memory, and gap tasks. The model also
+   simulates data on multimodal enhancement and suppression of activity in the
+   deeper SC layers and suggests a functional role for NMDA receptors in this
+   region. In particular, the model suggests how auditory and planned saccadic
+   target positions become aligned and compete with Visually reactive target
+   positions to select a movement command. For this to occur, a transformation
+   between auditory and planned head-centered representations and a retinotopic
+   target representation is learned. Burst cells in the model generate teaching
+   signals to the spreading wave layer.  Spreading waves are produced by
+   corollary discharges that render planned and visually reactive targets
+   dimensionally consistent and enable them to compete for attention to
+   generate a movement command in motor error coordinates, The attentional
+   selection process also helps to stabilize the map-learning process. The
+   model functionally interprets cells in the superior colliculus, frontal eye
+   field, parietal cortex, mesencephalic reticular formation, paramedian
+   pontine reticular formation, and substantia nigra pars reticulata.
+RE 109
+DT Review
+LO BIOL
+UD 19971229
+KW SACCADES
+KW EYE MOVEMENTS
+KW SUPERIOR COLLICULUS
+KW ATTENTION
+KW LEARNING
+KW BURST NEURONS
+KW BUILDUP NEURONS
+KW PARIETAL CORTEX
+KW FRONTAL EYE FIELDS
+KW RETICULAR FORMATION
+KW SUBSTANTIA NIGRA
+KW POSTERIOR PARIETAL CORTEX
+KW LATERAL INTRAPARIETAL AREA
+KW ORIENTING GAZE SHIFTS
+KW NIGRA PARS RETICULATA
+KW SENSORIMOTOR INTEGRATION
+KW OCULOMOTOR FUNCTIONS
+KW VISUAL-ATTENTION
+KW AUDITORY SIGNALS
+KW EFFERENT NEURONS
+KW MONKEY
+
+TI A POLYSYNAPTIC FEEDBACK-CIRCUIT IN RAT VISUAL-CORTEX
+AU Johnson-RR
+AU Burkhalter-A
+CS Washington Univ,Sch Med,Dept Anat & Neurobiol,660 S Euclid Ave,Box 8108/St
+   Louis//MO/63110
+CS Washington Univ,Sch Med,Dept Anat & Neurobiol/St Louis//MO/63110
+JN JOURNAL OF NEUROSCIENCE
+VO 17
+NO 18
+PG 7129-7140
+PY 1997
+AB Feedback connections from extrastriate cortex to primary visual cortex (V1)
+   in the primate may provide ''top-down'' information that plays a role in
+   visual attention and object recognition, Our work in a rodent model of
+   corticocortical circuitry demonstrates that feedback pathways synapse
+   preferentially with pyramidal cells in V1 (Johnson and Burkhalter, 1996) and
+   favor excitation over inhibition in cortical microcircuits (Shao and
+   Burkhalter, 1996).
+   To investigate the polysynaptic circuits activated by feedback inputs, we
+   studied chains of neurons postsynaptic to feedback connections using a
+   combination of axonal tract tracing and anterograde degeneration, This
+   approach enabled independent labeling of local collaterals of
+   forward-projecting neurons in V1 and feedback connections from extrastriate
+   lateromedial (LM) visual area to V1. Postsynaptic targets were identified in
+   the electron microscope after retrograde transport of biotinylated dextran
+   amine (BDA) to identify dendrites of forward-projecting neurons (i.e., from
+   V1 to LM) and postembedding immunogold labeling to identify GABAergic
+   interneurons,
+   The results show that feedback connections provide strong monosynaptic input
+   to forward-projecting neurons in V1, These neurons in turn make local
+   connections that preferentially form synapses with other pyramidal cells.
+   (similar to 97%), many of which were identified as forward-projecting
+   neurons. This indicates that feedback pathways provide input directly to
+   neurons which make the reciprocal forward connection, and that
+   feedback-recipient forward-projecting neurons are strongly interconnected,
+   The function of these excitatory networks within V1 may be to amplify
+   feedback activity and provide a circuit for modulation of striate cortical
+   activity by top-down influences.
+RE 61
+DT Article
+LO BIOL
+UD 19971022
+KW CORTICOCORTICAL CONNECTIONS
+KW FEEDBACK CONNECTIONS
+KW INTRINSIC CONNECTIONS
+KW VISUAL CORTEX
+KW ELECTRON MICROSCOPY
+KW POSTEMBEDDING IMMUNOCYTOCHEMISTRY
+KW LOCAL AXON COLLATERALS
+KW CALLOSAL PROJECTION NEURONS
+KW SPINY STELLATE NEURONS
+KW CAT STRIATE CORTEX
+KW MOUSE SOMATOSENSORY CORTEX
+KW LATERAL GENICULATE-NUCLEUS
+KW HORSERADISH-PEROXIDASE
+KW HORIZONTAL CONNECTIONS
+KW INTRINSIC CONNECTIONS
+KW PYRAMIDAL NEURONS
+
+TI TASK-DEPENDENT LEARNING OF ATTENTION
+AU Vandelaar-P
+AU Heskes-T
+AU Gielen-S
+CS Catholic Univ Nijmegen,Dept Med Phys & Biophys,Rwcp Novel Funct Snn Lab,CPK1
+   231/NL-6525 Ez Nijmegen//NETHERLANDS/
+JN NEURAL NETWORKS
+VO 10
+NO 6
+PG 981-992
+PY 1997
+AB In this article, we propose a neural network model for selective covert
+   visual attention. This model can learn to focus its attention on important
+   features depending on the task to be fulfilled by gating the flow of
+   information from the lower to the higher levels of the visual system. The
+   model is kept as simple as possible, but it is still capable of reproducing
+   attentional behavior observed in psychological experiments. Computer
+   simulations demonstrate that (1) it can learn categories to reduce reaction
+   time without a decrease in performance, (2) the model reveals a performance
+   similar to that of humans in feature and conjunction search, and (3) its
+   learning dynamics are comparable with those of humans.  (C) 1997 Elsevier
+   Science Ltd.
+RE 33
+DT Article
+LO BIOL
+UD 19971001
+KW ATTENTION
+KW NEURAL NETWORKS
+KW LEARNING PROCESS
+KW VISUAL SEARCH
+KW COMPUTER VISION
+KW VISUAL-SEARCH
+KW SELECTIVE ATTENTION
+KW CONNECTIONIST MODEL
+KW GUIDED SEARCH
+KW INFORMATION
+KW SEGMENTATION
+KW RECOGNITION
+KW PARALLEL
+
+TI SPATIAL EXTINCTION ON DOUBLE ASYNCHRONOUS SIMULATION
+AU Dipellegrino-G
+AU Basso-G
+AU Frassinetti-F
+CS Univ Bologna,Dept Psychol,Via Berti Pichat 5/I-40127 Bologna//ITALY/
+CS Univ Modena,Dept Clin Neurol/I-41100 Modena//ITALY/
+JN NEUROPSYCHOLOGIA
+VO 35
+NO 9
+PG 1215-1223
+PY 1997
+AB Despite the fact that visual extinction is widely considered a space-based
+   disturbance of selective attention, there has been little theoretical
+   consensus about the nature of its pathogenic mechanism. A specific
+   disruption in the ability to disengage attention from ipsilesional stimuli,
+   or a loss of weight with which contralesional objects compete for visual
+   selection, have been hypothesized to account for the disorder. We tested the
+   merits of these two explanations in a right-hemisphere-lesioned patient, FB,
+   who failed to recognize a contralesional target only when it was shown
+   concurrently to an ipsilesional target (i.e. visual extinction). His task
+   was to report two target letters presented in rapid succession to the left
+   and right of the fixation point. The order of stimulus presentation
+   (Left-First vs Right-First), and the intertarget interval (stimulus onset
+   asynchrony) were varied systematically.  We showed that contralesional
+   extinction may occur for successively presented targets, not just for
+   stimuli displayed at the same time. Of most importance, FB was seriously and
+   equally impaired in dealing with a contralesional stimulus when this either
+   preceded the ipsilesional stimulus or followed it by an interval less than
+   about 600 msec. The data appear to contradict the disengagement hypothesis,
+   which predicted a substantial reduction of extinction when a stimulus was
+   displayed first into the lesioned side of space. We suggest that a
+   competitive model of visual selective attention fits the data quite well.
+   (C) 1997 Elsevier Science Ltd.
+RE 57
+DT Article
+LO BIOL
+UD 19970910
+KW SPATIAL EXTINCTION
+KW SELECTIVE ATTENTION
+KW COMPETITIVE NETWORK
+KW NEGLECT
+KW PERCEPTION
+KW RIGHT-HEMISPHERE
+KW SELECTIVE VISUAL-ATTENTION
+KW NEURAL MECHANISMS
+KW TARGET SELECTION
+KW PARIETAL LOBE
+KW NEGLECT
+KW PERCEPTION
+KW STIMULI
+KW SEARCH
+KW MODEL
+KW INTERFERENCE
+
+TI LEXICAL AND SEMANTIC PROCESSING IN THE ABSENCE OF WORD READING - EVIDENCE
+   FROM NEGLECT DYSLEXIA
+AU Ladavas-E
+AU Umilta-C
+AU Mapelli-D
+CS Univ Bologna,Dipartimento Psicol,Viale Berti Pichat 5/I-40127
+   Bologna//ITALY/
+CS Univ Padua,Dipartimento Psicol Gen/Padua//ITALY/
+JN NEUROPSYCHOLOGIA
+VO 35
+NO 8
+PG 1075-1085
+PY 1997
+AB Nine patients with left-sided neglect and nine matched control patients
+   performed three tasks on horizontal(either normal or mirror-reversed) letter
+   strings. The tasks were: reading aloud, making a lexical decision (word vs
+   non-word), and making a semantic decision (living vs non-living item).
+   Relative to controls, neglect patients performed very poorly in the reading
+   task, whereas they performed nearly normally in the lexical and semantic
+   tasks. This was considered to be a dissociation between direct tasks, rather
+   than a dissociation between explicit and implicit knowledge. The explanation
+   offered for the dissociation is in terms of both a dual-route model for
+   reading aloud and a degraded representation of the letter string. (C) 1997
+   Elsevier Science Ltd.
+RE 43
+DT Article
+LO BIOL
+UD 19970813
+KW NEGLECT DYSLEXIA
+KW VISUAL ATTENTION
+KW LEXICAL/SEMANTIC ACCESS
+KW READING ROUTES
+KW VISUAL NEGLECT
+KW EXTINGUISHED FIELD
+KW UNILATERAL NEGLECT
+KW SPATIAL ATTENTION
+KW LETTER STRINGS
+KW RECOGNITION
+KW MODEL
+KW REPRESENTATION
+KW IDENTIFICATION
+KW PERCEPTION
+
+TI OBJECT-BASED VISUAL-ATTENTION IN LUMINANCE INCREMENT DETECTION
+AU Stuart-GW
+AU Maruff-P
+AU Currie-J
+CS Mental Hlth Res Inst Victoria,Neurophysiol & Neurovisual Res Unit,Locked Bag
+   No 11/Parkville/Vic 3052/AUSTRALIA/
+CS Westmead Hosp,Brain Res Unit,Drug & Alcohol Serv/Sydney/Nsw/AUSTRALIA/
+JN NEUROPSYCHOLOGIA
+VO 35
+NO 6
+PG 843-853
+PY 1997
+AB A cued reaction time task was used to test the hypothesis that there is an
+   'object-based' component to shifts of attention mediating the detection of
+   luminance increment targets. The test stimulus consisted of two intersecting
+   triangles forming a 'Star of David'.  In two experiments, the cue was a
+   brief brightening of one triangle.  The target (a bright green dot) appeared
+   on one of the triangles after a delay of 100, 200 or 500 msec. In one
+   experiment, the target was more likely to appear on the cued triangle. In a
+   second experiment, there was no contingency between cue and target. In both
+   cases, reaction times to targets which appeared outside (but not inside) the
+   cued triangle were more than 10 msec longer than other targets, but only al
+   the shorter cue-target delays. This indicates that the attentional system
+   which regulates luminance increment detection cannot select the cued
+   triangle. It appears that the attentional spotlight can be briefly deformed
+   into a triangular shape, and that it is the rapid, fast-decaying and
+   reflexive exogenous system, rather than the slower acting, persistent and
+   voluntary endogenous system, that mediates this effect. A third experiment
+   using a central, symbolic cue showed no significant cue-validity effects,
+   indicating no contribution from the endogenous system. It is concluded that
+   tasks requiring only stimulus detection cannot unequivocally discriminate
+   between spatial and object-based components of attention. (C) 1997 Elsevier
+   Science Ltd.
+RE 48
+DT Article
+LO BIOL
+UD 19970709
+KW VISUAL ATTENTION
+KW OBJECT-BASED SELECTION
+KW POSNER TASK
+KW SELECTIVE ATTENTION
+KW FOCAL ATTENTION
+KW GUIDED SEARCH
+KW LOCATIONS
+KW INHIBITION
+KW RETURN
+KW CORTEX
+KW MODEL
+KW MOVEMENT
+KW MACAQUES
+
+TI THE EFFECT OF ATTENTION ON PHENOMENAL LENGTH
+AU Prinzmetal-W
+AU Wilson-A
+CS Univ Calif Berkeley,Dept Psychol,3210 Tolman Hall/Berkeley//CA/94804
+CS Univ Oregon,Dept Psychol/Eugene//OR/97403
+JN PERCEPTION
+VO 26
+NO 2
+PG 193-205
+PY 1997
+AB The effect of attention of the perceived length of briefly presented
+   peripheral lines was investigated. Attention was manipulated by engaging
+   observers in a second concurrent task (letter identification).  Observers
+   used the method of adjustment to indicate the length of the stimulus lines.
+   In two experiments it was found that the primary effect of attention was to
+   reduce the variability of line length adjustments. Previously investigators
+   had reported that attention reduces perceived line length. A third
+   experiment suggested that these previously reported results might have been
+   the outcome of a spatial interaction with the cue used to manipulate
+   attention, but not the result of visual attention.
+RE 33
+DT Article
+LO BIOL
+UD 19970618
+KW MUELLER-LYER ILLUSION
+KW MODULATION
+KW CONTRAST
+KW SEARCH
+KW MODEL
+
+TI THE EFFECT OF A MOVING DISTRACTOR ON THE INITIATION OF SMOOTH-PURSUIT
+   EYE-MOVEMENTS
+AU Ferrera-VP
+AU Lisberger-SG
+CS Columbia Univ,Ctr Neurobiol & Behav,722 W 168TH St/New York//NY/10032
+CS Univ Calif San Francisco,Dept Physiol,Wm Keck Fdn Ctr Integrat Neurosci/San
+   Francisco//CA/00000
+JN VISUAL NEUROSCIENCE
+VO 14
+NO 2
+PG 323-338
+PY 1997
+AB As a step toward understanding the mechanism by which targets are selected
+   for smooth-pursuit eye movements, we examined the behavior of the pursuit
+   system when monkeys were presented with two discrete moving visual targets.
+   Two rhesus monkeys were trained to select a small moving target identified
+   by its color in the presence of a moving distracter of another color.
+   Smooth-pursuit eye movements were quantified in terms of the latency of the
+   eye movement and the initial eye acceleration profile. We have previously
+   shown that the latency of smooth pursuit, which is normally around 100 ms,
+   can be extended to 150 ms or shortened to 85 ms depending on whether there
+   is a distracter moving in the opposite or same direction, respectively,
+   relative to the direction of the target.  We have now measured this effect
+   for a 360 deg range of distracter directions, and distracter speeds of 5-45
+   deg/s. We have also examined the effect of varying the spatial separation
+   and temporal asynchrony between target and distracter. The results indicate
+   that the effect of the distracter on the latency of pursuit depends on its
+   direction of motion, and its spatial and temporal proximity to the target,
+   but depends very little on the speed of the distracter.  Furthermore, under
+   the conditions of these experiments, the direction of the eye movement that
+   is emitted in response to two competing moving stimuli is not a vectorial
+   combination of the stimulus motions, but is solely determined by the
+   direction of the target.  The results are consistent with a competitive
+   model for smooth-pursuit target selection and suggest that the competition
+   takes place at a stage of the pursuit pathway that is between visual-motion
+   processing and motor-response preparation.
+RE 59
+DT Article
+LO BIOL
+UD 19970402
+KW SMOOTH PURSUIT
+KW SENSORIMOTOR BOTTLENECK
+KW COMPETITIVE NETWORKS
+KW EYE MOVEMENTS
+KW VISUAL ATTENTION
+KW MACAQUE
+KW CORTICAL AREAS MT
+KW SUPERIOR TEMPORAL SULCUS
+KW MACAQUE MONKEY
+KW VISUAL AREA
+KW RHESUS-MONKEY
+KW CORTICOPONTINE PROJECTION
+KW HORSERADISH-PEROXIDASE
+KW MOTION DIRECTION
+KW PONTINE NUCLEI
+KW FIELD LESIONS
+
+TI ORIENTING OF SPATIAL ATTENTION - ITS REFLEXIVE, COMPENSATORY, AND VOLUNTARY
+   MECHANISMS
+AU Hikosaka-O
+AU Miyauchi-S
+AU Shimojo-S
+CS Juntendo Univ,Sch Med,Dept Physiol,Bunkyo Ku,2-1-1 Hongo/Tokyo 113//JAPAN/
+CS Commun Res Lab/Koganei/Tokyo 184/JAPAN/
+JN COGNITIVE BRAIN RESEARCH
+VO 5
+NO 1-2
+PG 1-9
+PY 1996
+AB Attention is a mechanism to select sensory information. It is a modulatory
+   process which normally cannot be observed as overt responses. We have
+   studied spatial attention using a new visual illusion of motion -
+   line-motion effect: a line, which was presented physically at once, was
+   perceived to be drawn from ocne side when attention was captured to that
+   side of the line by a preceding visual cue stimulus. This effect was due to
+   acceleration of visual information processing at the locus of attention. The
+   motion illusion was produced by both stimulus-induced (bottom-up) and
+   voluntary (top-down) attention, which suggested that the two kinds of
+   attention act on relatively early stages of visual processing. The objective
+   of this study was to examine how various modes of spatial attention might be
+   represented and reorganized in the brain. Using the induction of illusory
+   Line motion as a measure we found that: (1) once attention is captured by a
+   moving object, it follows the object as it moves; and (2) attention moves
+   with a saccade in the retinal coordinates such that its focus remains fixed
+   in space. We then asked whether attention acts across different sensory
+   modalities. We found that both auditory and somatosensory cues induced focal
+   visual attention in space where the cue was presented. Based on these
+   findings we propose a model which would allow (1) matching of visual spatial
+   information obtained across saccades, and (2) matching of spatial
+   information obtained in different sensory modalities.
+RE 32
+DT Article
+LO BIOL
+UD 19970307
+KW SPATIAL ATTENTION
+KW VISUAL ILLUSION
+KW VISUAL RESPONSE PROPERTIES
+KW MOTION SENSATION
+KW TEMPORAL-ORDER
+KW AREA MT
+KW MACAQUE
+KW REPRESENTATION
+KW ORGANIZATION
+KW INFORMATION
+KW CONNECTIONS
+KW CORTEX
+
+TI VISUAL-ATTENTION - CONTROL, REPRESENTATION, AND TIME-COURSE
+AU Egeth-HE
+AU Yantis-S
+CS Johns Hopkins Univ,Dept Psychol/Baltimore//MD/21218
+JN ANNUAL REVIEW OF PSYCHOLOGY
+VO 48
+PG 269-297
+PY 1997
+AB Three central problems in the recent literature on visual attention are
+   reviewed. The first concerns the control of attention by top-down (or
+   goal-directed) and bottom-up (or stimulus-driven) processes.  The second
+   concerns the representational basis for visual selection, including how much
+   attention can be said to be location- or object-based.  Finally, we consider
+   the time course of attention as it is directed to one stimulus after
+   another.
+RE 127
+DT Review
+LO HUMS
+UD 19970307
+KW ATTENTION
+KW COGNITION
+KW HUMAN SUBJECTS
+KW PERCEPTION
+KW PSYCHOPHYSICS
+KW REACTION TIME
+KW VISION
+KW VISUAL SEARCH
+KW SELECTIVE ATTENTION
+KW PERCEPTUAL SELECTIVITY
+KW ALLOCATING ATTENTION
+KW MOVING ATTENTION
+KW 2-STAGE MODEL
+KW ABRUPT ONSETS
+KW GUIDED SEARCH
+KW OBJECTS
+KW PARALLEL
+KW SERIAL
+
+TI PRESERVED SEMANTIC ACCESS IN NEGLECT DYSLEXIA
+AU Ladavas-E
+AU Shallice-T
+AU Zanella-MT
+CS Univ Bologna,Dipartimento Psicol,Viale Berti Pichat 5/Bologna//ITALY/
+CS SISSA/I-34014 Trieste//ITALY/
+JN NEUROPSYCHOLOGIA
+VO 35
+NO 3
+PG 257-270
+PY 1997
+AB The aim of this study was to investigate the preservation of semantic access
+   in patients with severe neglect dyslexia for words and non-words. Patients
+   were given the following tasks: (1) reading aloud letter strings (first
+   basic reading task), (2) making semantic decisions (categorial and
+   inferential judgements), (3) making semantic decisions and reading the
+   letter strings immediately afterwards (semantic-reading tasks), (4) reading
+   letter strings again (final basic reading tasks) and (5) auditory control
+   tasks.  Of 23 patients with Visual neglect, four showed neglect dyslexia for
+   both words and non-words. Of these four patients, three showed, a
+   performance in the semantic tasks that was as good as in the auditory
+   condition. Moreover, the reading of the patients improved dramatically in
+   the semantic-reading tasks but this was not maintained in the final basic
+   reading task. Non-words showed only a minor improvement. Findings are
+   discussed in terms of an interaction between the attentional system and the
+   different reading routes, and provide evidence that semantic routes are less
+   affected by neglect. (C) 1997 Elsevier Science Ltd.
+RE 29
+DT Article
+LO BIOL
+UD 19970307
+KW NEGLECT DYSLEXIA
+KW VISUAL ATTENTION
+KW READING ROUTES
+KW SEMANTIC ACCESS
+KW ATTENTION
+KW MODEL
+KW SOUND
+KW NONWORDS
+KW WORDS
+
+TI A NEURAL MECHANISM FOR INVOLUNTARY ATTENTION SHIFTS TO CHANGES IN
+   AUDITORY-STIMULATION
+AU Schroger-E
+CS Univ Munich,Inst Psychol,Leopoldstr 13/D-80802 Munich//GERMANY/
+JN JOURNAL OF COGNITIVE NEUROSCIENCE
+VO 8
+NO 6
+PG 527-539
+PY 1996
+AB Involuntary switching to task-irrelevant sound change was studied by
+   measuring event-related brain potentials (ERPs) and behavioral performance
+   in a dichotic listening paradigm. Pairs of tones (S1 and S2) were presented
+   and subjects were instructed to ignore ST (delivered to the left ear) and to
+   make a go/no-go response to the subsequent S2 (delivered to the right ear).
+   On most trials, the task-irrelevant S1 was of standard frequency, but
+   occasionally it deviated from the standard frequency either by a small or
+   large amount. It was predicted that deviant stimuli were automatically
+   detected and that they could involuntarily capture attention.  It they lead
+   to attention switching, less capacity should be available for the processing
+   of target tones resulting in impaired processing of S2. As in many previous
+   studies, deviant tones elicited the mismatch negativity (MMN), which is a
+   component of the ERP indicating automatic change detection. Furthermore,
+   targets preceded by a deviant tone elicited a smaller N1 wave and were
+   detected less effectively than targets preceded by a standard tone. This
+   impaired processing of targets following cask-irrelevant changes occurred
+   only with short S1-S2 intervals (Experiment I) but not with long ones
+   (Experiment II). The results support a model claiming that the auditory
+   system possesses a change detection system that monitors the acoustic input
+   and may produce an attentional ''interrupt'' signal when a deviant occurs.
+   The involuntary attentional capture caused by this signal leads to
+   impoverished processing of closely succeeding stimuli.
+RE 65
+DT Article
+LO BIOL
+UD 19970219
+KW EVENT-RELATED POTENTIALS
+KW MISMATCH NEGATIVITY
+KW VISUAL-ATTENTION
+KW SENSORY MEMORY
+KW STIMULUS DEVIANCE
+KW PITCH CHANGES
+KW SELECTIVE ATTENTION
+KW BRAIN
+KW RESPONSES
+KW FREQUENCY
+
+TI SPECIFIC EFFECTS OF SPATIAL-FREQUENCY UNCERTAINTY AND DIFFERENT CUE TYPES ON
+   CONTRAST DETECTION - DATA AND MODELS
+AU Hubner-R
+CS Tech Univ Carolo Wilhelmina Braunschweig,Inst Psychol,Spielmannstr
+   19/D-38106 Braunschweig//GERMANY/
+JN VISION RESEARCH
+VO 36
+NO 21
+PG 3429-3439
+PY 1996
+AB If the spatial-frequency of sinusoidal signals in a contrast-detection
+   experiment varies randomly from trial to trial, then performance is
+   decreased compared with that in a situation where it remains constant. This
+   spatial-frequency uncertainty effect can more or less be compensated by
+   presenting informative cues shortly before each trial. Single-band, as well
+   as multiple-band models, have been proposed to explain the uncertainty and
+   cuing effects. While the latter assume that under uncertainty multiple
+   channels are monitored simultaneously, the former propose that in each trial
+   a single, but sometimes inappropriate, channel is selected for monitoring,
+   Until now it is open which of these models is valid.  Therefore,
+   psychometric functions were collected under different conditions of
+   spatial-frequency uncertainty. It appears that the size of the uncertainty
+   effect varies with spatial-frequency.  This result can be explained by a
+   multiple-band model, as computational analysis reveals. Copyright (C) 1996
+   Elsevier Science Ltd.
+RE 50
+DT Article
+LO BIOL
+UD 19961231
+KW SPATIAL-FREQUENCY UNCERTAINTY
+KW CUEING
+KW MULTIPLE-BAND MODELS
+KW CONTRAST DETECTION
+KW SIGNAL DETECTION
+KW SIGNAL-DETECTION
+KW VISUAL-ATTENTION
+KW HUMAN-VISION
+KW SUMMATION
+KW SENSITIVITY
+KW ORIENTATION
+KW DISCRIMINATIONS
+KW MECHANISMS
+KW THRESHOLD
+KW GRATINGS
+
+TI ON THE SPATIAL EXTENT OF ATTENTION IN OBJECT-BASED VISUAL SELECTION
+AU Lavie-N
+AU Driver-J
+CS Univ Coll London,Dept Psychol,Gower St/London WC1E 6BT//ENGLAND/
+CS Univ London Birkbeck Coll/London//ENGLAND/
+JN PERCEPTION & PSYCHOPHYSICS
+VO 58
+NO 8
+PG 1238-1251
+PY 1996
+AB A new test was devised to avoid previous confounds in measures of
+   object-based limits on divided visual attention. The distinction between
+   objects was manipulated across a wide spatial extent.  Target elements
+   appeared on the same object only when far apart, and appeared close only
+   when on different objects, so that object effects could not be reduced to
+   spatial effects, nor vice versa.  Subjects judged whether two odd elements
+   within a display of two dashed lines were the same or different. They
+   performed better when the target elements were far apart on a common line
+   rather than on two distinct lines, even though the latter arrangement was
+   more likely. Thus, nonstrategic object-based limits on divided attention can
+   arise even across large distances. However, when subjects were precued to
+   expect targets in a narrow region of the display, the object effect was
+   eliminated, implying that object-based selection may only operate within
+   spatially attended regions.
+RE 52
+DT Article
+LO BIOL
+UD 19961231
+KW PERCEPTUAL ORGANIZATION
+KW LOCATIONS
+KW DIMENSIONS
+KW DISPLAYS
+KW FIELD
+KW MODEL
+KW COLOR
+KW SHAPE
+KW COST
+
+TI SHARED NEURAL CONTROL OF ATTENTIONAL SHIFTS AND EYE-MOVEMENTS
+AU Kustov-AA
+AU Robinson-DL
+CS NEI,Sensorimotor Res Lab,Sect Visual Behav/Bethesda//MD/20892
+JN NATURE
+VO 384
+NO 6604
+PG 74-77
+PY 1996
+AB WE are able to move visual attention away from the direction of gaze,
+   fixating on one object while attending to something else at a different
+   location. Within the region of peripheral vision, It has been widely assumed
+   that the attentional neural systems are separate from the motor systems, but
+   some studies challenge this idea(1-5). It has now been suggested that the
+   attentional system is part of the premotor processing in the brain(6). This
+   model proposes that attentional processes evolved as part of the motor
+   systems, with isolated attentional shifts representing an artificial
+   separation of a natural linkage, Here we test how attentional shifts might
+   be linked to the preparations for making saccadic eye movements. We studied
+   the superior colliculus in monkeys as they shifted their attention during
+   different tasks, and found that each attentional shift is associated with
+   eye-movement preparation.
+RE 25
+DT Article
+LO PHYS ASTR GEOL KERC BIOL EERL=current
+UD 19961231
+KW MONKEY SUPERIOR COLLICULUS
+KW VISUAL-ATTENTION
+KW STIMULATION
+KW MACAQUES
+KW CELLS
+KW LOCALIZATION
+KW SACCADES
+
+TI THE CODE THEORY OF VISUAL-ATTENTION - AN INTEGRATION OF SPACE-BASED AND
+   OBJECT-BASED ATTENTION
+AU Logan-GD
+CS Univ Illinois,Dept Psychol,603 E Daniel St/Champaign//IL/61820
+JN PSYCHOLOGICAL REVIEW
+VO 103
+NO 4
+PG 603-649
+PY 1996
+AB This article presents a theory that integrates space-based and object-based
+   approaches to visual attention. The theory puts together M. P. van Oeffelen
+   and P. G. Vos's(1982, 1983) COntour DEtector (CODE) theory of perceptual
+   grouping by proximity with C. Bundesen's (1990) theory of visual attention
+   (TVA). CODE provides input to TVA, accounting for spatially based
+   between-object selection, and TVA converts the input to output, accounting
+   for feature- and category-based within-object selection. CODE clusters
+   nearby items into perceptual groups that are both perceptual objects and
+   regions of space, thereby integrating object-based and space-based
+   approaches to attention. The combined theory provides a quantitative account
+   of the effects of grouping by proximity and distance between items on
+   reaction time and accuracy data in ? empirical situations that shaped the
+   current literature on visual spatial attention.
+RE 139
+DT Review
+LO HUMS
+UD 19961231
+KW TRACE MEMORY MODEL
+KW ILLUSORY CONJUNCTIONS
+KW PERCEPTUAL ORGANIZATION
+KW SELECTIVE ATTENTION
+KW CONNECTIONIST MODEL
+KW FOCUSED ATTENTION
+KW SPATIAL ATTENTION
+KW INSTANCE THEORY
+KW GUIDED SEARCH
+KW INFORMATION
+
+TI OBJECTS AND ATTRIBUTES IN DIVIDED ATTENTION - SURFACE AND BOUNDARY SYSTEMS
+AU Duncan-J
+AU Nimmosmith-I
+CS MRC,Appl Psychol Unit,15 Chaucer Rd/Cambridge CB2 2EF//ENGLAND/
+JN PERCEPTION & PSYCHOPHYSICS
+VO 58
+NO 7
+PG 1076-1084
+PY 1996
+AB A series of experiments investigated concurrent discriminations of surface
+   and nonsurface attributes, including color, brightness, texture, length,
+   location, and motion. In all cases but one, results matched those previously
+   reported: Interference occurred when two discriminations concerned different
+   objects, but not when they concerned the same one. In the two-object case,
+   interference was the same whether discriminations were similar (e.g., two
+   surface discriminations) or different (e.g., one surface, one boundary). 
+   Such results support a model of visual attention in which separate visual
+   subsystems are coordinated, converging to work on surface and boundary
+   properties of the same selected object. A partial exception is color: For
+   reasons that are unclear color escapes two-object interference except from
+   other, concurrent surface discriminations.
+RE 20
+DT Article
+LO BIOL
+UD 19961231
+KW VISUAL-ATTENTION
+KW PERCEPTION
+KW COLOR
+KW DIMENSIONS
+KW CHANNELS
+KW FORM
