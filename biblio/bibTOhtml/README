@@ -1,8 +1,0 @@
-bibTOhtml is a small perl script that takes a BibTeX file as input and
-outputs a set of HTML pages. See our publication pages for an example
-of output.
-
-We had negative 10 minutes to write this script, so it comes with no
-real interface, documentation, or anything. The definitions which you
-can change to customize it to your needs are all at the top of the
-perl code, which should make it easy to edit.

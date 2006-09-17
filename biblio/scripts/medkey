@@ -1,2 +1,0 @@
-#!/bin/sh
-medref $* > /dev/null
