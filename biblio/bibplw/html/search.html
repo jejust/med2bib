@@ -1,0 +1,36 @@
+<html><head>
+<title>iLab Publications - University of Southern California</title>
+<link rel="stylesheet" href="bibstyle.css"></head>
+<body bgcolor=#CCF0FF>
+<p><center><img src="/i/ilab5.gif"></img></center></p>
+<p><center><img src="/i/publi1.gif"></img></center></p>
+<h1>Search for Publication</h1>
+<p><form method="post" action="/cgi-bin/biblio/search.pl">
+<I>Select the logic used for combining searches on fields: e.g. search for publications with an author </I>smith AND <I>the word </I>neural <I>in the title.</I>
+<br>Logic: <select name="choice"><option value="and">AND<option value="or">OR</select>
+<br><I>Select search criteria.  Any field you're not interested in should be left blank.  The search is case independent.  Year should be 4 digits.  If you enter multiple words into a search field (seperated by spaces), specify if you want to search for all the words, any of the words, or an exact match for the phrase.</I>
+<br><table border="0">
+<tr><td align="right">Author<td><input type="text" name="author" size="30"><td>
+<input type="radio" name="aut_radio" value="any" checked>any 
+<input type="radio" name="aut_radio" value="all">all 
+<input type="radio" name="aut_radio" value="exact">exact</tr>
+<tr><td align="right">Title<td><input type="text" name="title" size="30"><td>
+<input type="radio" name="tit_radio" value="any" checked>any 
+<input type="radio" name="tit_radio" value="all">all 
+<input type="radio" name="tit_radio" value="exact">exact</tr>
+<tr><td align="right">Year<td><input type="text" name="year" size="30"><td>
+<input type="radio" name="yea_radio" value="any" checked>any 
+<input type="radio" name="yea_radio" value="all">all 
+<input type="radio" name="yea_radio" value="exact">exact</tr>
+<tr><td align="right">Abstract<td><input type="text" name="abstract" size="30"><td>
+<input type="radio" name="abs_radio" value="any" checked>any 
+<input type="radio" name="abs_radio" value="all">all 
+<input type="radio" name="abs_radio" value="exact">exact</tr>
+<tr><td align="right">Keyword<td><input type="text" name="keyword" size="30"><td>
+<input type="radio" name="key_radio" value="any" checked>any 
+<input type="radio" name="key_radio" value="all">all 
+<input type="radio" name="key_radio" value="exact">exact</tr>
+</table>
+<br><input type="submit" value="Perform Search"><input type="reset" value="Clear Fields">
+</form></p>
+</body></html>

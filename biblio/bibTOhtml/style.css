@@ -1,0 +1,86 @@
+<style type="text/css">
+body { 	margin-left: 3;
+	background: black;
+	color: black;
+	margin-right: 100%;
+}
+
+h1 {    color: yellow;
+        background: navy;
+	font-size: 100%;
+	padding: 0.2em;
+}
+
+h2 {    color: navy;
+        background: #00CCFF;
+	font-size: 80%;
+	padding: 0.1em;
+}
+
+
+h1,h2,h3,h4,h5,h6 {
+        margin-left: -10%;
+        font-family: Helvetica, Arial, Verdana, sans-serif;
+        font-weight: 900;
+	border: none;
+}
+
+
+pre {   font-family: monospace; }
+
+div.box { border: solid; border-width: thin; width: 100% }
+
+P.sm {	font-family: Helvetica, Arial, Verdana, sans-serif;
+	font-size: 7pt
+}
+
+P.desc { font-family: Helvetica, Arial, Verdana, sans-serif;
+	font-size: small;
+	color: navy;
+}
+
+P.BIBkw { font-family: Helvetica, Arial, Verdana, sans-serif;
+	font-size: small;
+	color: rgb(0, 96, 32);
+}
+
+P.BIBabs {
+	color: black;
+}
+
+P.BIBent { font-family: Helvetica, Arial, Verdana, sans-serif;
+	font-size: 12pt;
+}
+
+TD.thead {
+	font-family: Helvetica, Arial, Verdana, sans-serif;
+	color: red;
+	font-weight: 900;
+}
+
+:link { color: rgb(255,0,255);   /* for unvisited links */
+	font-family: Helvetica, Arial, Verdana, sans-serif;
+	text-decoration: none;
+	font-weight: bold;
+}  
+:visited {
+	color: rgb(192, 0, 192); /* for visited links */
+	font-family: Helvetica, Arial, Verdana, sans-serif;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+:active { color: rgb(255, 0, 0);  /* when link is clicked */
+	font-family: Helvetica, Arial, Verdana, sans-serif;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+:hover { color: rgb(255, 0, 192); /* when mouse is over link */
+	font-family: Helvetica, Arial, Verdana, sans-serif;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+
+</style>

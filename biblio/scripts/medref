@@ -1,0 +1,13 @@
+#!/bin/bash
+# contributed by Olav Kongas <ok@mito.physiol.med.vu.nl>  <kongas@ioc.ee>
+# USAGE: medref <keyword1> <keyword2> ... <keywordN> >> bibfile.bib
+#        will connect to pubmed via the Lynx web browser (must be installed),
+#        run a query for all keywords (AND'ed), convert the results to
+#        BibTeX and append them to the BibTeX file biblio.bib
+# EXAMPLE: medref Wilson 1999 >> test.bib
+
+dispmax=20   # Max num of refs. Modify this if necessary
+string=
+for arg ; do string=$string+AND+$arg ; done
+string=${string#*+AND+}
+lynx -dump "http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Search&db=PubMed&term=$string&doptcmdl=MEDLINE&dispmax=$dispmax&title=no" -width=1000 | med2bib

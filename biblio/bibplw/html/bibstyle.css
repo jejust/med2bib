@@ -1,0 +1,132 @@
+<style type="text/css">
+
+body {	background-color: #CCF0FF;
+	color: black;
+}
+
+h1 {    color: yellow;
+        background: navy;
+	font-size: 125%;
+	padding: 0.3em;
+}
+
+h2 {    color: white;
+        background: #00AA00;
+	font-size: 80%;
+	padding: 0.2em;
+}
+
+TD.req {	
+	color : red;
+	text-transform: capitalize;
+
+}
+
+TD.exact {	
+	color : blue;
+	text-transform: capitalize;
+
+}
+
+TD.atlst {	
+	color : green;
+	text-transform: capitalize;
+
+}
+
+TD.opt { 	
+	color : black;
+	text-transform: capitalize;
+
+}
+
+TD.atmst {	
+	color : orange;
+	text-transform: capitalize;
+
+}
+
+h1,h2,h3,h4,h5,h6,TD,P {
+        font-family: Helvetica, Arial, Verdana, sans-serif;
+        font-weight: 900;
+	margin-left: 0%;
+	margin-right: 0%;
+	border: none;
+}
+
+
+
+
+em {	font-weight: bold;
+	color: red;
+}
+
+pre {   font-family: monospace; }
+
+div.box { border: solid; border-width: thin; width: 100% }
+
+P.sm {	font-family: Helvetica, Arial, Verdana, sans-serif;
+	font-size: 6pt
+}
+
+P.desc { font-family: Helvetica, Arial, Verdana, sans-serif;
+	font-size: small;
+	color: navy;
+}
+
+P.BIBkw { font-family: Helvetica, Arial, Verdana, sans-serif;
+	font-size: small;
+	color: rgb(0, 96, 32);
+}
+
+P.BIBabs {
+	color: black;
+}
+
+P.BIBent { font-family: Helvetica, Arial, Verdana, sans-serif;
+	font-size: 14pt;
+}
+
+TR.cool {
+	background: #AAD0F0
+}
+
+TD.thead {
+	font-family: Helvetica, Arial, Verdana, sans-serif;
+	color: red;
+	font-weight: 900;
+}
+
+TD.thead2 {
+	font-family: Helvetica, Arial, Verdana, sans-serif;
+	color: green;
+	font-weight: 900;
+}
+
+:link { color: rgb(255,0,255);   /* for unvisited links */
+	font-family: Helvetica, Arial, Verdana, sans-serif;
+	text-decoration: none;
+	font-weight: bold;
+}  
+:visited {
+	color: rgb(192, 0, 192); /* for visited links */
+	font-family: Helvetica, Arial, Verdana, sans-serif;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+:active { color: rgb(255, 0, 0);  /* when link is clicked */
+	font-family: Helvetica, Arial, Verdana, sans-serif;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+:hover { color: rgb(255, 0, 192); /* when mouse is over link */
+	font-family: Helvetica, Arial, Verdana, sans-serif;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+
+
+</style>

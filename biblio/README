@@ -1,0 +1,22 @@
+iLab bibliography management tools
+----------------------------------
+Copyright (C) 2001 by Laurent Itti, University of Southern California & iLab.
+BibPLW Copyright (C) 2001 by Philip Williams, University of Southern California
+	& iLab.
+
+src/		Tools to convert from medline, JournalTracker
+		and TOC/DOC to BibTeX;
+
+samples/	Examples of input bibliography files;
+
+scripts/	Scripts to query Pubmed with BibTeX reply and to cleanup
+		your BibTeX files;
+
+bibTOhtml/	converts a BibTeX file into a set of HTML pages for
+		easy and clean browsing;
+
+jtrack/		JournalTracker to HTML email gateway;
+
+iLab/		our bib files.
+
+bibplw/         Philip Williams' web/PostgreSQL/BibTeX interfacing.
