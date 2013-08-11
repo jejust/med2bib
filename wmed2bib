@@ -1,0 +1,102 @@
+#!/usr/bin/perl
+
+use strict ;
+use warnings ;
+
+use LWP::UserAgent ;
+use IPC::Open2 ;
+
+use constant FALSE => 0 ;
+use constant TRUE  => 1 ;
+
+my $med2bib_prog = $ENV{HOME}.'/local/bin/med2bib' ;
+
+if ( not @ARGV )
+  {print STDERR "Give a list of PMID as parameter.\n" ;
+   exit 1 ;
+  }
+elsif ( grep {not /^\d+$/} @ARGV )
+  {die "PMID are numerical.\n" ;
+  }
+
+# URL documentation:
+# http://www.ncbi.nlm.nih.gov/books/bv.fcgi?rid=helplinks.chapter.linkshelp#linkshelp.Retrieve_PubMed_Cita
+
+my $pmid_list  = join ',', @ARGV ;
+my $pubmed_url = join '', 'http://www.ncbi.nlm.nih.gov/pubmed/',
+                          $pmid_list,
+                          '?report=medline&format=text' ;
+
+my $ua  = LWP::UserAgent->new() ;
+my $req = HTTP::Request->new( GET => $pubmed_url ) ;
+my $res = $ua->request( $req ) ;
+
+# check the outcome
+if (not $res->is_success() )
+  {die "Error: " . $res->status_line() . "\n" ;
+  }
+
+
+my $pubmed_records = $res->decoded_content() ;
+$pubmed_records =~s/\A.*<pre>\n//s ;
+$pubmed_records =~s/<\/pre>.*\z/\n\n\n/s ;
+
+#print $pubmed_records ;
+
+
+foreach my $record ( split /\n\n+/, $pubmed_records )
+  {my ( $prg_out, $prg_in );
+   my $pid = open2($prg_out, $prg_in,
+                   $med2bib_prog ) or die "Cannot open $med2bib_prog" ;
+
+   print $prg_in $record ;
+   close $prg_in ;
+
+   my $output = '' ;
+   my $is_inside = FALSE ;
+   my $in_title = FALSE ;
+   my $pmid ;
+   while ( my $line = <$prg_out> )
+     {# On reformate la ligne du PMID pour supprimer les espaces en trop
+      $line =~s/^line\s*=\s*PMID\s*-\s*(\d+)/line=PMID-$1/m ;
+
+      if ( defined $1 )
+	{$pmid = $1 ;
+	}
+
+      # On copie le PMID dans le corps de la fiche:
+      if ( $is_inside and defined $pmid )
+	{$output .= qq#note    = \{PMID $pmid\},\n# ;
+         undef $pmid ;
+	}
+
+      # On transforme les traits d'unions en tirets (pour l'anglais)
+      #$line =~s/(pages\s*=\{[0-9A-Za-z]+)\-([0-9A-Za-z]+\},)/$1--$2/gm ;
+
+#      # Dans le titre, on met les mots contenant des majuscules entre accolades
+#      if ( $line =~/^title\s*=/ )
+#	{$in_title = TRUE ;
+#        }
+#      if ($in_title)
+#	{while( $line =~/(\S+)/g )
+#	   {my $word = 
+#	   }
+#        }
+#      if ( $in_title and $line =~/\},\s*$/ )
+#	{$in_title = FALSE ;
+#	}
+
+
+      $output .= $line ;
+
+      if ( $line =~m/^\@/ )
+	{$is_inside = TRUE ;
+	}
+    }
+
+
+   print STDOUT $output ;
+  }
+
+
+exit 0 ;
