@@ -1,0 +1,699 @@
+#!/usr/bin/perl
+
+use Text::BibTeX;
+
+##### Put your thematic keys in a "type" BibTeX tag (see below); the
+##### URL of the pDF reprint goes in a "file" tag; and the URL of a
+##### www version in the "URL" tag.
+
+##### If you use "in-press" as the year, the publication will be
+##### assumed to have several pages (and hence will go to the "long
+##### conference papers" section of your LaTeX CV); if you instead use
+##### "in press" it is assumed that the publication is a short
+##### abstract.
+
+##### The URLs below are relative to where the HTML pages will be
+##### finally setup (not used during execution of bibTOhtml). $destdir
+##### tells bibTOhtml where to put the .html files relative to the current path
+$style = "/style.css"; # URL of a style sheet to be included
+$picdir = "/i";        # URL of where the images and icons are
+$verbose = 0;          # show file open/close info during parsing
+$bibmaster = "src/ilab.bib";   # URL of master bibtexfile
+$destdir = '/lab/html/publications'; # PATH where to write HTML
+$dops = 0;             # show PS files
+$dowww = 0;            # show WWW files
+$scholar = '/lab/html/publications/src/scholarcites.txt';
+
+##### You Lab's Information & your Copyright:
+$title = "iLab Publications - University of Southern California";
+$copy = "Copyright &copy; 2000-2007 by the University of Southern ".
+    "California, iLab and Prof. Laurent Itti.";
+
+##### Colors:
+$ticol = 'navy';    # color for titles
+$jocol = 'red';     # color for journal names
+$dacol = 'navy';    # color for year
+$xxcol = 'blue';    # for the words: Abstract, Note, Keywords
+
+##### Images and Icons:
+$bannerPic = $picdir."/ilab5.gif"; # a banner at top of page (or comment out)
+$titlePic = $picdir."/publi1.gif"; # a title just below banner (or comment out)
+$ICONps = $picdir."/ICONps.gif";
+$ICONpdf = $picdir."/ICONpdf.gif";
+$ICONhtml = $picdir."/ICONhtml.gif";
+$ICONabs = $picdir."/ICONabs.gif";
+$ICONblank = $picdir."/ICONblank.gif";
+$ICONbib = $picdir."/ICONbib.gif";
+
+##### The real BibTeX entry types plus a couple of fake ones:
+##### In particular, the "press" entry here follows the "article" format
+##### but if for press releases rather than articles we wrote
+%types = ( 'article' => 'Journal Articles',
+	   'incollection' => 'Book Chapters',
+	   'inproceedings' => 'Proceedings from International Conferences',
+	   'book' => 'Books',
+	   'phdthesis' => 'Ph.D. Theses',
+	   'mastersthesis' => 'Master Theses',
+	   'techreport' => 'Technical Reports',
+	   'booklet' => 'Booklets',
+	   'manual' => 'Technical Documentations',
+	   'proceedings' => 'Edited Conference Proceedings',
+	   'unpublished' => 'Unpublished Documents',
+	   'patent' => 'Patents and Copyrights',
+
+       'arxiv' => 'ArXiv Preprints',
+	   'press' => 'Press Coverage',
+	   'misc' => 'Miscellaneous',
+	   'invited' => 'Selected Plenary and Invited Talks',
+	   'submitted' => 'Publications Submitted to Review',
+	   'in-press' => 'Publications in Press',
+	   'all' => 'All Publications',
+	   );
+@origtypes = keys(%types); $toda = `date`;
+$types{'index'} = 'Welcome to the iLab Publication Server!';
+
+##### The thematic categories: They should be stored in a "type" BibTeX tag,
+##### separated by | or ; if there are several:
+$types{'bu'} = 'Model of Bottom-Up Saliency-Based Visual Attention';
+$types{'td'} = 'Model of Top-Down Attentional Modulation';
+$types{'psy'} = 'Human Psychophysics';
+$types{'mod'} = 'Computational Modeling';
+$types{'mip'} = 'Medical Image Processing';
+$types{'fmri'} = 'Functional Neuroimaging';
+$types{'med'} = 'Medical Research';
+$types{'cv'} = 'Computer Vision';
+$types{'rev'} = 'Review Articles and Chapters';
+$types{'bb'} = 'Beobots';
+$types{'sc'} = 'Scene Understanding';
+$types{'eye'} = 'Human Eye-Tracking Research';
+$types{'su'} = 'Bayesian Theory of Surprise';
+$types{'phy'} = 'Monkey Electrophysiology';
+$types{'wm'} = 'Working Memory';
+$types{'ml'} = 'Machine Learning';
+
+##############################################################################
+##### This starts getting messy and should not be modified:
+##############################################################################
+%info = ( 'phdthesis' => 'Ph.D. Thesis',
+	  'mastersthesis' => 'Master Thesis',
+	  'techreport' => 'Technical Report',
+	  'manual' => 'Technical Documentation',
+	  'unpublished' => 'Unpublished',
+	  'patent' => 'Patent/Copyright',
+	  'invited' => 'Invited/Plenary Talk',
+      'arxiv' => 'ArXiv Preprint',
+      );
+$HTMLstart = "<HTML><HEAD><LINK rel=\"stylesheet\" href=\"$style\">".
+    "<TITLE>$title</TITLE><META HTTP-EQUIV=\"Pragma\" CONTENT=\"no-cache\">".
+	"</HEAD><BODY>\n";
+if ($bannerPic) {
+    $HTMLstart .= "<P><CENTER><IMG SRC=\"$bannerPic\"></IMG></CENTER></P>\n";
+}
+if ($titlePic) {
+    $HTMLstart .= "<P><CENTER><IMG SRC=\"$titlePic\"></IMG></CENTER></P>\n";
+}
+
+$HTMLend = "<P> &nbsp; </P><CENTER><P class=\"sm\">$copy<BR>".
+    "This page generated by <A HREF=\"http://iLab.usc.edu/bibTOhtml/\">".
+    "bibTOhtml</A> on $toda</P></CENTER></BODY></HTML>\n";
+
+$HTMLicons = "<HR><CENTER><P class=\"desc\">";
+if ($dowww) {
+    $HTMLicons .= 
+	"<IMG SRC=\"$ICONhtml\" BORDER=0></IMG> = HTML Version, ".
+	"&nbsp; &nbsp; ";
+}
+if ($dops) {
+    $HTMLicons .= 
+	"<IMG SRC=\"$ICONps\" BORDER=0></IMG> = PostScript Reprint, ".
+	"&nbsp; &nbsp;";
+}
+$HTMLicons .=
+    "<IMG SRC=\"$ICONpdf\" BORDER=0></IMG> = PDF Reprint, &nbsp; &nbsp; ".
+    "<IMG SRC=\"$ICONbib\" BORDER=0></IMG> = BibTeX entry, &nbsp; &nbsp; ".
+    "<IMG SRC=\"$ICONabs\" BORDER=0></IMG> = Online Abstract</CENTER></P>".
+    "<HR>";
+
+#### let's also build a latex list of publications for my CV:
+$ltxstart = "";
+$ltx00 = "\\noindent {\\large\\bf Our 30 Most Cited Papers per Google Scholar}\n\n";
+$ltx0 = "\\noindent {\\large\\bf Books".
+    "}\n\n\\begin{enumerate} \\parsep=3pt \\itemsep=0pt\n\n";
+$ltx1 = "\\noindent {\\large\\bf Refereed Journal Articles}\n\n".
+    "\\begin{enumerate} \\parsep=3pt \\itemsep=0pt\n\n";
+$ltx2a = "\\noindent {\\large\\bf Proceedings from International ".
+    "Conferences With Full Paper Review}\n\n\\begin{enumerate} ".
+    "\\parsep=3pt \\itemsep=0pt\n\n";
+$ltx2b = "\\noindent {\\large\\bf Proceedings from Workshops ".
+    "With Full Paper Review}\n\n\\begin{enumerate} ".
+    "\\parsep=3pt \\itemsep=0pt\n\n";
+$ltx2c = "\\noindent {\\large\\bf ArXiv Preprints}\n\n\\begin{enumerate} ".
+    "\\parsep=3pt \\itemsep=0pt\n\n";
+$ltx3a = "\\noindent {\\large\\bf Proceedings from International ".
+    "Conferences With Abstract Review}\n\n\\begin{enumerate} ".
+    "\\parsep=3pt \\itemsep=0pt\n\n";
+$ltx3b = "\\noindent {\\large\\bf Proceedings from Workshops ".
+    "With Abstract Review}\n\n\\begin{enumerate} ".
+    "\\parsep=3pt \\itemsep=0pt\n\n";
+$ltx4 = "\\noindent {\\large\\bf Other Publications}\n\n".
+    "\\begin{enumerate} \\parsep=3pt \\itemsep=0pt\n\n";
+$ltx5 = "\\noindent {\\large\\bf Selected Press Coverage}\n\n".
+    "\\begin{enumerate} \\parsep=3pt \\itemsep=0pt\n\n";
+$ltx6 = "\\noindent {\\large\\bf Book Chapters}\n\n".
+    "\\begin{enumerate} \\parsep=3pt \\itemsep=0pt\n\n";
+$ltx7 = "\\noindent {\\large\\bf Selected Plenary and Invited Talks}\n\n".
+    "\\begin{enumerate} \\parsep=3pt \\itemsep=0pt\n\n";
+$ltxend = "\\end{enumerate}\n\n";
+$ltxnote = "\\noindent{\\small\\fontfamily{cmss}\\selectfont [Publication ".
+    "list automatically compiled: ".`date`."- Check http://iLab.usc.edu ".
+    "for up-to-date information].}\n\n\\vspace{10pt}\n\n";
+
+#### and here is for the French CV:
+$ftxstart = "";
+$ftx00 = "\\noindent {\\large\\bf Nos 30 Papiers les plus Cit\\{'}es per Google Scholar}\n\n";
+$ftx0 = "\\noindent {\\large\\bf Livres".
+    "}\n\n\\begin{enumerate} \\parsep=3pt \\itemsep=0pt\n\n";
+$ftx1 = "\\noindent {\\large\\bf Articles dans journaux \\'a comit\\'e de lecture}\n\n".
+    "\\begin{enumerate} \\parsep=3pt \\itemsep=0pt\n\n";
+$ftx2a = "\\noindent {\\large\\bf Proceedings de conf\\'erences \\`a comit\\'e de lecture sur papier complet".
+    "}\n\n\\begin{enumerate} ".
+    "\\parsep=3pt \\itemsep=0pt\n\n";
+$ftx2b = "\\noindent {\\large\\bf Proceedings de workshops \\`a comit\\'e de lecture sur papier complet".
+    "}\n\n\\begin{enumerate} ".
+    "\\parsep=3pt \\itemsep=0pt\n\n";
+$ftx2c = "\\noindent {\\large\\bf ArXiv pre-publications".
+    "}\n\n\\begin{enumerate} ".
+    "\\parsep=3pt \\itemsep=0pt\n\n";
+$ftx3a = "\\noindent {\\large\\bf Proceedings de conf\\'erences \\`a comit\\'e de lecture sur r\\'esum\\'e".
+    "}\n\n\\begin{enumerate} ".
+    "\\parsep=3pt \\itemsep=0pt\n\n";
+$ftx3b = "\\noindent {\\large\\bf Proceedings de workshops \\`a comit\\'e de lecture sur r\\'esum\\'e".
+    "}\n\n\\begin{enumerate} ".
+    "\\parsep=3pt \\itemsep=0pt\n\n";
+$ftx4 = "\\noindent {\\large\\bf Autres Publications}\n\n".
+    "\\begin{enumerate} \\parsep=3pt \\itemsep=0pt\n\n";
+$ftx5 = "\\noindent {\\large\\bf S\\'election de presse}\n\n".
+    "\\begin{enumerate} \\parsep=3pt \\itemsep=0pt\n\n";
+$ftx6 = "\\noindent {\\large\\bf Chapitres de livres}\n\n".
+    "\\begin{enumerate} \\parsep=3pt \\itemsep=0pt\n\n";
+$ftx7 = "\\noindent {\\large\\bf S\\'election de s\\'eminaires invit\\'es}\n\n".
+    "\\begin{enumerate} \\parsep=3pt \\itemsep=0pt\n\n";
+$ftxend = "\\end{enumerate}\n\n";
+$ftxnote = "\\centerline{\\small\\fontfamily{cmss}\\selectfont [Liste de publication ".
+    "compil\\'ee automatiquement: ".`date`."- Voir http://iLab.usc.edu ".
+    "pour information \\`a jour].}\n\n\\vspace{10pt}\n\n";
+
+##############################################################################
+# Get google scholar citation information if available:
+if ( -f $scholar) {
+    $totcites = 0;
+    open SC, $scholar || die "Cannot open $scholar: ";
+    while (<SC>) {
+	chomp; @x = split(/\s+/, $_);
+	$scholarcit{$x[0]} = $x[1]; # store number of citations
+	$scholarurl{$x[0]} = $x[2]; # store URL to paper
+	$scholarurl{$x[0]} =~ s/\?num=1\&/?num=30&/;
+	$x[0] =~ s/\_/\-/g;
+	push(@scholarcount, "$x[1]/$x[0]");
+	$totcites = $totcites + $x[1];
+    }
+
+    # compile most-cited list:
+    $mclist = "\\vspace{10pt}\n\n\\noindent\\begin{center}{\\small\\fontfamily{cmss}\\selectfont\\begin{tabular}{cc|cc|cc}\n";
+    $mclist .= "{\\bf Reference} & {\\bf Cites} & {\\bf Reference} & ";
+    $mclist .= "{\\bf Cites} & {\\bf Reference} & {\\bf Cites}\\\\ \\hline \n";
+    $i = 0; @scholarcount = reverse sort {$a <=> $b} @scholarcount;
+    while ($i < 30) {
+	($count, $ref) = split(/\//, $scholarcount[int($i / 3) + ($i % 3) * 10]); $count = $count + 0;
+	$mclist .= "$ref & $count";
+	$i ++; if ($i % 3 == 0) { $mclist .= "\\\\ \n"; } else { $mclist .= " & "; }
+    }
+    $mclist .= "\\end{tabular}\n\n\\vspace{10pt}{\\small[See details below";
+    #$mclist .= ". Total citations for all our papers: $totcites";
+    $mclist .= "]} }\\end{center} \n\n";
+    $ltx00 .= $mclist; $ftx00 .= $mclist;
+} else { $ltx00 = ""; $ftx00 = ""; }
+
+##############################################################################
+$bibname = shift || die "USAGE: $0 <bibfile.bib>\n";
+$nps = 0; $nhtm = 0; $npdf = 0; $nabs = 0; $nb = 0;
+
+##### start parsing the bibtex file:
+$bibfile = new Text::BibTeX::File $bibname;
+while ($entry = new Text::BibTeX::Entry $bibfile)
+{
+    my ($lti, $ljo, $lvo, $lbt, $led, $ldat, $lin, $lim);
+    next unless $entry->parse_ok;
+    next unless $entry->metatype eq BTE_REGULAR;
+
+    ##### parse entry:
+    $type = $entry->type; $ye = $entry->get('year');
+    $ye = lc($ye); if ($ye =~ /^\d+$/ && $ye < 100) { $ye += 1900; }
+    $key = $entry->key; $au = join(', ', $entry->split('author'));
+    $ti = $entry->get('title');     $jo = $entry->get('journal');
+    if (substr($ti, -1) eq '.') { chop $ti; }
+    $vo = $entry->get('volume');    $nu = $entry->get('number');
+    $mo = $entry->get('month');     $pp = $entry->get('pages');
+    $se = $entry->get('series');    $pu = $entry->get('publisher');
+    $bt = $entry->get('booktitle'); $im = $entry->get('if');
+    $ed = join(', ', $entry->split('editor'));
+    $ad = $entry->get('address');   $or = $entry->get('organization');
+    $in = $info{$type};
+    $review = $entry->get('review');
+    ($rev1, $rev2) = split(/\//, lc($review));
+
+    #print STDERR "$key, $jo$bt, $ye [$type]\n";
+    print STDERR "$key [$type]\n";
+
+    # check for duplicate keys:
+    if ($knownkey{$key}) { die "##### Duplicate key $key -- ABORT #####\n"; }
+    else { $knownkey{$key} = 1; }
+
+    ##### format and colorize the various fields:
+    if ($au) { $au = "$au, "; }
+    if ($ti) { $lti = "``$ti,'' ";  # for latex output
+	       $ti = "<FONT COLOR=\"$ticol\">$ti,</FONT> "; }  # for html out
+    if ($jo) { $ljo = "{\\it $jo,} ";
+	       $jo = "<FONT COLOR=\"$jocol\"><I>$jo,</I></FONT> ";}
+    if ($vo) { $lvo = "Vol. {\\bf $vo}, ";
+	       $vo = "Vol. <B>$vo</B>, "; }
+    if ($nu) { $nu = "No. $nu, "; }
+    if ($ye) { $ldat = "$mo $ye.";
+	       $dat = "<FONT COLOR=\"$dacol\">$mo $ye.</FONT>"; }
+    if ($pp) { $pp = "p. $pp, "; if ($pp =~ "-") { $pp = "p$pp"; } }
+    if ($se) { $se = "[$se], "; }
+    if ($pu) { $pu = "$pu, "; }
+    if ($bt) { 
+	if ($type ne 'invited') {
+	    $lbt = "{\\bf In:} {\\it $bt,} ";
+	    $bt = "<FONT COLOR=\"$jocol\"><B>In: </B><I>$bt,</I></FONT> ";
+	} else {
+	    $lbt = "{\\it $bt,} ";
+	    $bt = "<FONT COLOR=\"$jocol\"><I>$bt,</I></FONT> ";
+	}
+    }
+    if ($ed) { $led = " ($ed {\\bf Ed.}), ";
+	       $ed = " ($ed <B>Ed.</B>), "; }
+    if ($ad && $pu) { $ad = "$ad:$pu"; $pu = ""; } else { $ad = ""; }
+    if ($or) { $or = "$or, "; }
+    if ($in) { $lin = " {\\bf [$in]}";
+	       $in = " <B>[$in]</B>"; }
+    if ($im) { $lim = " {\\sc [$im]}";
+	       $im = " <FONT color=#3366FF>[$im]</FONT>"; }
+
+    if ($scholarcit{$key} > 0) {
+	$sch = " <A HREF=\"$scholarurl{$key}\">(Cited by ".
+	    "$scholarcit{$key})</A>";
+	$ff = '\fontfamily{cmss}\selectfont';
+	if ($scholarcit{$key} >= 50)
+	{ $schltx = " \{\\bf$ff [Cited by $scholarcit{$key}]\}"; }
+	else
+	{ $schltx = " \{$ff [Cited by $scholarcit{$key}]\}"; }
+    } else { $sch = ""; $schltx = ""; }
+
+    ##### Build html and LaTeX representations of entry:
+    $ref = "$au$ti$jo$bt$ed$vo$nu$or$pp$pu$ad$dat";
+    $lref = "\\item $au$lti$ljo$lbt$led$lvo$nu$or$pp$pu$ad$ldat";
+    if ($type eq "article" && $pp !~ /[0-9]/ && $ye !~ /submi/)
+    { $ref .= " (in press)"; $lref .= " (in press)"; }
+    if ($type ne "invited") { $ref .= $in; $lref .= $lin; }
+    $lref =~ s/\. /.\\ /g;    # avoid double spaces after periods.
+    if ($im) { $ref .= $im; $lref .= $lim; }
+    if ($sch) { $ref .= $sch; $lref .= $schltx; }
+    $ref =~ s/\\//g; # eliminate any remaining backslash from the HTML
+
+    ##### stop here if we have no entry
+    next unless $ref;
+    $txt = "";
+
+    ##### if we have an HTML version, add it:
+    if ($dowww) {
+	if ($entry->exists('url') && length($entry->get('url')) > 3) {
+	    $txt .= icon($ICONhtml, $entry->get('url'),
+			 'Click to view web page'); $nhtm ++;
+	} else {
+	    $txt .= icon($ICONblank);
+	}
+    }
+    
+    ##### if we have a PS version, add it:
+    if ($dops) {
+	if ($entry->exists('psurl') && length($entry->get('psurl')) > 3) {
+	    $txt .= icon($ICONps, $entry->get('psurl'),
+			 'Click to download PostScript version'); $nps ++;
+	} else {
+	    $txt .= icon($ICONblank);
+	}
+    }
+    
+    ##### if we have a PDF version, add it:
+    if ($entry->exists('file') && length($entry->get('file')) > 3) {
+	# make sure the file actually exists:
+	my @tmp = split(/\//, $entry->get('file'));
+	my $f = $destdir . '/doc/' . pop(@tmp);
+	if (substr($f, -4) eq '.pdf' &&
+	    ! -s "$f") { die "PDF file $f does not exist!\n"; }
+
+	# create a link to it:
+	$txt .= icon($ICONpdf, $entry->get('file'),
+		     'Click to download PDF version'); $npdf ++;
+    } else {
+	$txt .= icon($ICONblank);
+    }
+    
+    ##### create BibTeX entry and add link to it:
+    $bname = "$key.bib";
+    $txt .= icon($ICONbib, $bname, 'Click to download BibTeX data');
+    open BRE, ">$destdir/$bname" || die "Cannot write $bname: ";
+    print BRE $entry->print_s; close BRE;
+    
+    ##### if we have an abstract, add a link and create a page with it:
+    $fname = "$key.html"; 
+    if ($entry->exists('abstract') && length($entry->get('abstract')) > 3) {
+	$txt .= icon($ICONabs, $fname, 'Clik to view abstract');
+	$abs = $entry->get('abstract'); $nabs ++;
+	$abs =~ s/\\+//g;  # cleanup bogus \'s that remain...
+	$abs = tohtml($abs);
+	$abs = "<P class=\"BIBabs\"><FONT COLOR=\"$xxcol\">".
+	    "<B>Abstract: </B></FONT>$abs</P>\n";
+    } else {
+	$txt .= icon($ICONblank, $fname); $abs = "";
+    }
+    if ($entry->exists('keywords') && length($entry->get('keywords'))>3) {
+	$kk = tohtml($entry->get('keywords'));
+	$kw = "<P class=\"BIBkw\"><FONT COLOR=\"$xxcol\"><B>Keywords:".
+	    " </B></FONT>".join("; ", split(/[\|;]/, $kk))."</P>\n";
+    } else { $kw = ""; }
+    if ($entry->exists('note') && length($entry->get('note')) > 3) {
+	$note = "<P class=\"BIBkw\"><FONT COLOR=\"$xxcol\"><B>Note: </B>".
+	    "</FONT>".tohtml($entry->get('note'))."</P>\n";
+	$lref .= " [".$entry->get('note')."]";
+    } else { $note = ""; }
+    if ($entry->exists('type')) {
+	$th = $entry->get('type'); $ttt = "";
+	$th =~ s/\s+/ /g;
+	$th =~ s/\s*\|\s*/\|/g;
+	$th =~ s/\s*;\s*/;/g;
+	@the = split(/[\|;]/, $th);
+	foreach $them (@the) {
+	    if (length($types{$them}) < 1) { die "###  Invalid type '$them'"; }
+	    if (length($ttt) > 1) { $ttt .= ", "; }
+	    $ttt .= "<A HREF=\"$them.html\">$types{$them}</A>";
+	}
+	$ttt = "<P class=\"BIBkw\"><FONT COLOR=\"$xxcol\"><B>Themes: </B>".
+	    "</FONT>$ttt</P>\n";
+    } else { $ttt = ""; }
+    out($key, "<P class=\"BIBent\">$txt $ref</P>\n$abs$kw$note$ttt");
+    # close this one right away so that we don't have too many open files
+    closeout($key);
+    
+    ##### concatenate entire citation:
+    $txt = "<P class=\"BIBent\">$txt $ref</P>\n"; $nb ++;
+    
+    ##### let's do the latex output:
+    # only keep things where I am author/editor for my CV, unless it's
+    # press or misc:
+    if ($au =~ /Itti/ || $ed =~ /Itti/ ||
+	$type eq "press" || $type eq "misc") {
+	$lref .= "\n\n";
+	if ($type eq "article") {
+        if ($jo =~ m/arXiv/) { die "Is this arxiv? -- ABORT\n$lref"; }
+	    $ltx1 .= $lref;
+	    $ftx1 .= $lref;
+    } elsif ($type eq "arxiv") {
+	    $ltx2c .= $lref;
+	    $ftx2c .= $lref;
+	} elsif ($type eq "incollection") {
+	    $ltx6 .= $lref;
+	    $ftx6 .= $lref;
+	} elsif ($type eq "inproceedings") {
+	    if ($review eq "") {
+		print STDERR "##### WARNING: no 'review' entry for $key #####\n";
+		}
+	    if ($rev1 eq 'full' && $rev2 eq 'conf') {
+		$ltx2a .= $lref;
+		$ftx2a .= $lref;
+	    }
+	    elsif ($rev1 eq 'full' && $rev2 eq 'wkshp') {
+		$ltx2b .= $lref;
+		$ftx2b .= $lref;
+	    }
+	    elsif ($rev1 eq 'abs' && $rev2 eq 'conf') {
+		$ltx3a .= $lref;
+		$ftx3a .= $lref;
+	    }
+	    elsif ($rev1 eq 'abs' && $rev2 eq 'wkshp') {
+		$ltx3b .= $lref;
+		$ftx3b .= $lref;
+	    }
+	    else
+	    { print STDERR "##### BOGUS 'review' entry for $key #####\n"; }
+
+	    #if ($pp =~ "-" || $lbt =~ "ISMRM" || $lbt =~ "IEEE" ||
+	    #  $lbt =~ "SPIE" || $ye =~ "-press") { $ltx2 .= $lref; }
+	    #else { $ltx3 .= $lref; } 
+	} elsif ($type eq "book") {
+	    $ltx0 .= $lref;
+	    $ftx0 .= $lref;
+	} elsif ($type eq "press") {
+	    $ltx5 .= $lref;
+	    $ftx5 .= $lref;
+	} elsif ($type eq "invited") {
+	    $ltx7 .= $lref;
+	    $ftx7 .= $lref;
+	} else {
+	    $ftx4 .= $lref;
+	    $ltx4 .= $lref;
+	}
+    }
+
+    ##### write this entry to corresponding files, except that we
+    ##### don't show submitted papers on the web site:
+    if ($ye =~ /submi/) { $ye = 'submitted'; }
+    elsif ($ye =~ /press/) { $ye = 'in-press'; }
+    if ($ye ne 'submitted') {
+	out($type, $txt);  # put in file for that type category
+	if ($type ne "invited") { # do by year and theme unless invited
+	    out($ye, $txt);    # write in file for that year
+	    if ($entry->exists('type')) {
+		$th = $entry->get('type');
+		$th =~ s/\s+/ /g;
+		$th =~ s/\s*\|\s*/\|/g;
+		$th =~ s/\s*;\s*/;/g;
+		@the = split(/[\|;]/, $th);
+		if ($#the < 0)
+		{ print STDERR "   ===== Warning: empty theme field.\n"; }
+		foreach $them (@the) {
+		    $themes{$them} = 1;
+		    out($them, $txt); # add this entry to each theme it covers
+		}
+	    } else { print STDERR "   ===== Warning: no theme field...\n"; }
+	    
+	    # write into the author files:
+	    @auth = $entry->split('author');
+
+	    # if no author, probably it's an edited book -> check out
+	    # the editor list instead:
+	    if ($#auth == -1) { @auth = $entry->split('editor'); }
+
+	    # write out the data:
+	    foreach $a (@auth) {
+		$a =~ s/\s+//g; out($a, $txt);
+		my @xxx = split(/\./, $a); my $lastname = pop(@xxx);
+		my $k = "$lastname, ".join('. ', @xxx).'.';
+		$authors{$k} = $a;  # add this paper to list for that author
+		$authornb{$k} ++;   # bump publication count for that author
+	    }
+	}
+	out('all', $txt);  # write this entry to the 'all publis' page
+    }
+    $entry = 0; # avoid bogus xfer of keywords across entries
+}
+
+##### let's write out the latex publication list for CV:
+open PU, ">$destdir/publications.tex" || die "Cannot write publications.tex: ";
+print PU "$ltxstart$ltxnote$ltx00$ltx0$ltxend$ltx1$ltxend$ltx6$ltxend$ltx2a$ltxend".
+    "$ltx2b$ltxend$ltx2c$ltxend$ltx3a$ltxend$ltx3b$ltxend$ltx7$ltxend$ltx4$ltxend".
+    "$ltx5$ltxend$ltxnote";
+close PU;
+
+##### also the french ones:
+open PUF, ">$destdir/publications-fr.tex" ||
+    die "Cannot write publications-fr.tex: ";
+print PUF "$ftxstart$ftxnote$ftx00$ftx0$ftxend$ftx1$ftxend$ftx6$ftxend$ftx2a$ftxend".
+    "$ftx2b$ftxend$ftx2c$ftxend$ftx3a$ftxend$ftx3b$ftxend$ftx7$ftxend$ftx4$ftxend".
+    "$ftx5$ftxend$ftxnote";
+close PUF;
+
+##### ok, now we can compile the general index:
+if ($out{'in-press'}) { push @years, 'in-press'; }
+if ($out{'submitted'}) { push @years, 'submitted'; }
+
+$summary = "<P><B>$nb publications</B>, $nabs with abstract, ".
+    "$npdf available as PDF";
+if ($dops) { $summary .= ", $nps as PS"; }
+if ($dowww) { $summary .= ", $nhtm as HTML"; }
+$summary .= ".</P>\n";
+out('index', $summary);
+
+out('index', '<H1>Publications by Year</H1>');
+foreach $y (reverse sort @years)
+{ out('index', "<A HREF=\"$y.html\">$y</A> &nbsp; &nbsp; &nbsp; &nbsp; "); }
+
+out('index', '<H1>Publications by Type and by Theme</H1>');
+out('index', '<TABLE width=100% align=center valign=center cellpadding=0'.
+    'cellspacing=0><TR><TD><UL>');
+foreach $y (sort @origtypes) {
+    next unless $out{$y};
+    $tt = $types{$y}; $tt =~ s/\s+/\&nbsp;/g;
+    out('index', "<LI><A HREF=\"$y.html\">$tt</A></LI>\n");
+}
+out('index', '</UL></TD><TD nowrap><UL>');
+foreach $y (sort keys %themes) {
+    next unless $out{$y};
+    out('index', "<LI><A HREF=\"$y.html\">$types{$y}</A></LI>");
+}
+
+out('index', '</UL></TD></TR></TABLE>');
+
+# prepare the most-cited list:
+$mc = "<TABLE cellpadding=1 cellspacing=1><TR><TD align=center nowrap>";
+$mc .= "<P class=desc>From <A HREF=\"http://scholar.google.com\">";
+$mc .= "Google Scholar</A> ";
+$mc .= localtime((stat($scholar))[9])."</P></TD></TR><TR><TD align=center>";
+$mc .= "<TABLE BORDER=0 CELLPADDING=2> ";
+$mc .= "<TR class=cool><TD class=thead>PDF Reprint</TD>";
+$mc .= "<TD class=thead>Citations</TD><TD>&nbsp;</TD>";
+$mc .= "<TD class=thead>PDF Reprint</TD>";
+$mc .= "<TD class=thead>Citations</TD></TR>";
+
+$totcit = 0;
+foreach $k (keys %scholarcit) {
+    push(@mostcit, sprintf('%06d', $scholarcit{$k}).' '.$k); 
+    $totcit += $scholarcit{$k};
+}
+@mostcit = reverse sort @mostcit;
+$ii = 0;
+while ($ii < 11) {
+    ($k1, $k2) = split(/\s+/, $mostcit[$ii]); $k1 = $k1 + 0;
+    $mc .= "<TR><TD class=cool><A HREF=\"/publications/${k2}.html\">";
+    $mc .= "${k2}.pdf</A></TD><TD class=cool align=center>";
+    $mc .= "$k1</TD><TD>&nbsp;</TD>";
+    if ($ii < 10) {
+	($k1, $k2) = split(/\s+/, $mostcit[$ii + 11]); $k1 = $k1 + 0;
+	$mc .= "<TD class=cool><A HREF=\"/publications/${k2}.html\">";
+	$mc .= "${k2}.pdf</A></TD><TD class=cool align=center>";
+	$mc .= "$k1</TD>";
+    } else {
+	$mc .= "<TD class=cool>All iLab papers</TD>";
+	$mc .= "<TD class=cool align=center>$totcit</TD>";
+    }
+    $mc .="</TR>\n";
+    $ii ++;
+}
+$mc .= "</TABLE></TABLE>\n";
+
+out('index', '<H1>Our most popular downloads and most cited papers</H1><P>');
+out('index', "<P><TABLE border=0 nowrap width=100%><TR>");
+out('index', "<TD align=center><!--#include file=\"topten.html\" --></TD>");
+out('index', "<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </TD>");
+out('index', "<TD align=center>$mc</TD>");
+out('index', "</TR></TABLE></P>");
+
+
+out('index', '<H1>Publications by Author (excluding plenary and '.
+    'invited talks)</H1>');
+out('index', '<TABLE cellpadding=0 cellspacing=0 border=0><TR>'); my $idx = 0;
+foreach $k (sort keys %authors) {
+    if ($authornb{$k} >= 5) {
+	out('index', "<TD class=desc nowrap>&nbsp;&nbsp;".
+	    "<A HREF=\"$authors{$k}.html\">$k</A> <B><FONT color=red>[".
+	    "$authornb{$k}]</FONT></B>&nbsp;&nbsp;</TD>\n");
+    } else {
+	out('index', "<TD class=desc nowrap>&nbsp;&nbsp;".
+	    "<A HREF=\"$authors{$k}.html\">$k</A> [".
+	    "$authornb{$k}]&nbsp;&nbsp;</TD>\n");
+    }
+    if ($idx ++ >= 7) { $idx = 0; out('index', '</TR><TR>'); }
+}
+out('index', "</TABLE>\n");
+
+out('index', "<H1>Master BibTeX File</H1><P>The master BibTeX ".
+    "file used to create these pages can be found <A HREF=\"$bibmaster\">".
+    "here</A>.</P>");
+
+closeouts();
+
+rename("$destdir/index.html", "$destdir/index.shtml");
+
+exit(0);
+
+##############################################################################
+##############################################################################
+sub openout {  # name
+    my $k = $_[0];
+    local *FH; open FH, ">$destdir/$k.html" || die "Cannot write $k.html: ";
+    if ($verbose) { print STDERR "##### Creating $k.html\n"; }
+    $out{$k} = *FH; print FH $HTMLstart;
+    if ($k =~ /^\d+$/) {   # this file is a list by year
+	push @years, $k;
+	print FH "<H1>Publications for Year $k</H1>\n";
+    }  elsif ($k =~ /\./) {  # it's an author
+	my $kk = $k; $kk =~ s/\./\. /g;
+	print FH "<H1>Publications for author $kk (excluding ".
+	    "plenary and invited talks)</H1>\n";
+    } elsif ($types{$k}) {  # this is a real category
+	print FH "<H1>$types{$k}</H1>\n";
+    } else {                # it's an abstract
+	print FH "<H1>Abstract</H1>\n";
+    }
+    if ($k ne "index") { print FH "$HTMLicons\n"; }
+}
+
+##############################################################################
+sub out {
+    my ($k, $txt) = @_;
+    if (! defined($out{$k})) { openout($k); }
+    local *F = $out{$k}; print F $txt;
+}
+
+##############################################################################
+sub closeouts {
+    foreach $k (keys %out) {
+	local *FH = $out{$k};
+	print FH "\n$HTMLend\n";
+	if ($verbose) { print STDERR "##### Closing $k.html\n"; }
+	close FH;
+    }
+}
+
+##############################################################################
+sub closeout {
+    if ($out{$_[0]}) {
+	local *FH = $out{$_[0]};
+	print FH "\n$HTMLend\n";
+	if ($verbose) { print STDERR "##### Closing $_[0].html\n"; }
+	close FH; delete $out{$_[0]};
+    }
+}
+
+##############################################################################
+sub icon {
+    if ($_[1]) {
+	return "<A HREF=\"$_[1]\" TITLE=\"$_[2]\">".
+	    "<IMG SRC=\"$_[0]\" BORDER=0 ALT=\"$_[2]\"></IMG></A> ";
+    } else {
+	return "<IMG SRC=\"$_[0]\" BORDER=0></IMG> ";
+    }
+}
+
+######################################################################
+sub tohtml { # text
+    my $txt = $_[0];
+    $txt =~ s/\s+/ /g;
+    $txt =~ s/&/&amp\;/g;
+    $txt =~ s/</&lt\;/g;
+    $txt =~ s/>/&gt\;/g;
+    $txt =~ s/\"/&quot\;/g;
+    return $txt;
+}
