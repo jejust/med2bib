@@ -25,13 +25,13 @@ No checking for duplicate keys is done. Only article BibTeX entries are generate
 
 **NEW IN VERSION 1.03 [2 Aug 2000]:** Medline page numbers corrected to long format (_e.g._, 1234-1256 instead of 1234-56) and added script `medref` to automatically query pubmed and convert results. Contributed by [Olav Kongas](mailto:kongas@ioc.ee) and [Marko Vendelin](mailto:markov@ioc.ee).
 
-Download `[med2bib-1.03.tar.gz](http://ilab.usc.edu/bibTOhtml/med2bib-1.03.tar.gz)`
+Download [`med2bib-1.03.tar.gz`](http://ilab.usc.edu/bibTOhtml/med2bib-1.03.tar.gz)
 
 **NEW IN VERSION 1.04 [24 Oct 2003]:** Bugfix of Medline page numbers when article has only one page. Contributed by [Stephan Imfeld](mailto:imfeld@geo.unizh.ch). Bugfix to support new pubmed format that starts with a PMID field rather than a UI field like it used to. Contributed by [Jérémy Just](mailto:just@inapg.inra.fr).
 
-Download `[med2bib-1.04.tar.gz](http://ilab.usc.edu/bibTOhtml/med2bib-1.04.tar.gz)`
+Download [`med2bib-1.04.tar.gz`](http://ilab.usc.edu/bibTOhtml/med2bib-1.04.tar.gz)
 
-Download `[biblio-1.04.tgz](http://ilab.usc.edu/bibTOhtml/biblio-1.04.tgz)`. This is a bundled download, which is a snapshot of our CVS tree. It contains some work-in-progress code that may not be usable or of interest to you. Please see the `README`s.
+Download [`biblio-1.04.tgz`](http://ilab.usc.edu/bibTOhtml/biblio-1.04.tgz). This is a bundled download, which is a snapshot of our CVS tree. It contains some work-in-progress code that may not be usable or of interest to you. Please see the `README`s.
 
 
 ## bibTOhtml - Convert BibTeX to HTML
@@ -40,6 +40,6 @@ Download `[biblio-1.04.tgz](http://ilab.usc.edu/bibTOhtml/biblio-1.04.tgz)`. Thi
 
 We had negative 10 minutes to write this script, so it comes with no real interface, documentation, or anything. The definitions which you can change to customize it to your needs are all at the top of the perl code, which should make it easy to edit.
 
-Download `[bibTOhtml-1.00.tar.gz](http://ilab.usc.edu/bibTOhtml/bibTOhtml-1.00.tar.gz)`
+Download [`bibTOhtml-1.00.tar.gz`](http://ilab.usc.edu/bibTOhtml/bibTOhtml-1.00.tar.gz)
 
 **New (Aug 1, 2002):** For the current version of the script itself, with some minor enhancements compared to the script in the above tar file, check [here](https://github.com/jejust/med2bib/blob/main/bibTOhtml) (you still need to get the tar file for the other files necessary to actually run the script).
